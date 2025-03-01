@@ -28,7 +28,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($users as $user)
+            @forelse ($users as $user)
                 <tr class="border-b border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                     <td class="p-3">
                         <button wire:click="edit({{ $user->id }})"
@@ -64,7 +64,11 @@
                             </span>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td class="p-3 text-center" colspan="5">Aucun utilisateur trouvé</td>
+                </tr>
+            @endforelse
             </tbody>
         </table>
 
