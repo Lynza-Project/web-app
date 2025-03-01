@@ -27,7 +27,7 @@ class OrganizationSeeder extends Seeder
 
         Organization::create([
             'name' => 'Super Org',
-            'type' => 'organization',
+            'type' => 'company',
             'logo' => null,
         ]);
 

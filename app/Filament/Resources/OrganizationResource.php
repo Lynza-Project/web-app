@@ -3,8 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrganizationResource\Pages;
+use App\Models\Address;
 use App\Models\Organization;
+use App\Models\Theme;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,11 +21,14 @@ use Filament\Tables\Actions\ForceDeleteAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Actions\RestoreBulkAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class OrganizationResource extends Resource
 {
@@ -28,27 +36,78 @@ class OrganizationResource extends Resource
 
     protected static ?string $slug = 'organizations';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $breadcrumb = 'Organisations';
+
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+
+    protected static ?string $navigationLabel = 'Organisations';
+
+    protected static ?string $label = 'Gestion des organisations';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return Organization::count();
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label('Nom')
                     ->required(),
 
-                TextInput::make('type')
+                Select::make('address_id')
+                    ->label('Adresse')
+                    ->relationship('addresses', 'name')
+                    ->searchable()
+                    ->options(
+                        fn() => Address::all()->pluck('name', 'id')->toArray()
+                    )
                     ->required(),
 
-                TextInput::make('logo'),
+                Select::make('theme_id')
+                    ->label('Thème')
+                    ->relationship('themes', 'title')
+                    ->searchable()
+                    ->options(
+                        fn() => Theme::all()->pluck('title', 'id')->toArray()
+                    )
+                    ->required(),
 
-                Placeholder::make('created_at')
-                    ->label('Created Date')
-                    ->content(fn(?Organization $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+                Select::make('type')
+                    ->label('Type')
+                    ->options([
+                        'school' => 'École',
+                        'company' => 'Entreprise',
+                        'association' => 'Association',
+                    ])
+                    ->required(),
 
-                Placeholder::make('updated_at')
-                    ->label('Last Modified Date')
-                    ->content(fn(?Organization $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+                FileUpload::make('logo')
+                    ->label('Logo')
+                    ->placeholder('Sélectionner une photo')
+                    ->image()
+                    ->disk('minio')
+                    ->directory('organization_logo')
+                    ->visibility('private')
+                    ->deleteUploadedFileUsing(function ($file, $record) {
+                        if ($record && $record->logo) {
+                            Storage::disk('minio')->delete($record->logo);
+                        }
+                    }),
+
+                Section::make('Informations')
+                    ->columns()
+                    ->schema([
+                        Placeholder::make('created_at')
+                            ->label('Créé le')
+                            ->content(fn(?Organization $record): string => $record?->created_at?->diffForHumans() ?? '-'),
+
+                        Placeholder::make('updated_at')
+                            ->label('Mis à jour le')
+                            ->content(fn(?Organization $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
+                    ]),
             ]);
     }
 
@@ -57,12 +116,30 @@ class OrganizationResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nom')
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('type'),
+                TextColumn::make('type')->label('Type')
+                    ->badge()
+                    ->colors([
+                        'success' => 'school',
+                        'danger' => 'company',
+                    ])
+                    ->formatStateUsing(function (string $state): string {
+                        return match ($state) {
+                            'school' => 'École',
+                            'company' => 'Entreprise',
+                            'association' => 'Association',
+                            default => $state,
+                        };
+                    },
+                    ),
 
-                TextColumn::make('logo'),
+                ImageColumn::make('logo_url')
+                    ->label('Logo')
+                    ->disk('minio')
+                    ->sortable(),
             ])
             ->filters([
                 TrashedFilter::make(),
@@ -99,8 +176,28 @@ class OrganizationResource extends Resource
             ]);
     }
 
+    public static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['addresses', 'themes']);
+    }
+
     public static function getGloballySearchableAttributes(): array
     {
-        return ['name'];
+        return ['name', 'address.name', 'theme.title'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        $details = [];
+
+        if ($record->address) {
+            $details['Address'] = $record->address->name;
+        }
+
+        if ($record->theme) {
+            $details['Theme'] = $record->theme->title;
+        }
+
+        return $details;
     }
 }
