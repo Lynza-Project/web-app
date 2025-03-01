@@ -29,7 +29,6 @@
                                 <flux:modal.trigger name="edit-user-{{ $user->id }}">
                                     <flux:link class="text-blue-500 cursor-pointer flex items-center space-x-1">
                                         <x-heroicon-o-pencil class="w-4 h-4"/>
-                                        <span>Modifier</span>
                                     </flux:link>
                                 </flux:modal.trigger>
                                 @livewire('users.edit-user', ['id' => $user->id], key('edit-user-'.$user->id))
@@ -38,7 +37,6 @@
                                     <flux:modal.trigger name="delete-user-{{ $user->id }}">
                                         <flux:link class="text-red-500 cursor-pointer flex items-center space-x-1">
                                             <x-heroicon-o-trash class="w-4 h-4"/>
-                                            <span>Supprimer</span>
                                         </flux:link>
                                     </flux:modal.trigger>
                             </div>
