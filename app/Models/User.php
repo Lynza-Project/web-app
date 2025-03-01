@@ -90,4 +90,12 @@ class User extends Authenticatable implements HasName, FilamentUser
     {
         return $this->belongsTo(Organization::class);
     }
+
+    /**
+     * @return bool
+     */
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super-admin';
+    }
 }
