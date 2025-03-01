@@ -43,21 +43,7 @@
                                 <x-heroicon-o-trash class="w-4 h-4"/>
                             </flux:button>
                         </flux:modal.trigger>
-
-                        <flux:modal name="delete-user-{{ $user->id }}" class="md:w-96">
-                            <div class="space-y-6">
-                                <div>
-                                    <flux:heading size="lg">Delete user</flux:heading>
-                                    <flux:subheading>Are you sure you want to delete this user?</flux:subheading>
-                                </div>
-
-                                <div class="flex">
-                                    <flux:spacer />
-
-                                    <flux:button type="submit" variant="danger">Delete</flux:button>
-                                </div>
-                            </div>
-                        </flux:modal>
+                        @livewire('users.delete-user', ['id' => $user->id], key($user->id))
                     </td>
                     <td class="flex items-center p-3">
                         <img src="{{ $user->profile_photo_url }}" alt="P" class="w-8 h-8 rounded-full mr-3">

@@ -75,4 +75,10 @@ class Users extends Component
     {
         $this->dispatch('refresh');
     }
+
+    #[On('userDeleted')]
+    public function userDeleted(): void
+    {
+        $this->dispatch('refresh');
+    }
 }
