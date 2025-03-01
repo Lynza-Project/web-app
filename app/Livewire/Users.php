@@ -69,4 +69,10 @@ class Users extends Component
     {
         $this->dispatch('refresh');
     }
+
+    #[On('userEdited')]
+    public function userEdited(): void
+    {
+        $this->dispatch('refresh');
+    }
 }

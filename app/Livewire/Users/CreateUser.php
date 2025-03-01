@@ -25,7 +25,7 @@ class CreateUser extends Component
         'first_name' => 'prénom',
         'last_name' => 'nom',
         'email' => 'email',
-        'role' => 'rôle',
+        'role' => 'role',
     ];
 
     public function createUser(): void
