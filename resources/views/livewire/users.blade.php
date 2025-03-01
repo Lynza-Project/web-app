@@ -1,5 +1,4 @@
-<div class="p-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-lg shadow-md">
-
+<div class="p-6 ">
     @livewire('search-bar', ['model' => 'search', 'width' => 'w-1/3'])
 
     <div wire:loading class="flex justify-center items-center">
@@ -14,17 +13,16 @@
             <thead>
             <tr class="text-left border-b border-gray-300 dark:border-gray-700">
                 <th class="p-3">Actions</th>
-                <th class="p-3 cursor-pointer hover:text-blue-500 dark:hover:text-blue-400" wire:click="sortBy('name')">
+                <th class="p-3">
                     Utilisateur
                 </th>
-                <th class="p-3 cursor-pointer hover:text-blue-500 dark:hover:text-blue-400" wire:click="sortBy('email')">
+                <th class="p-3">
                     Email
                 </th>
-                <th class="p-3 cursor-pointer hover:text-blue-500 dark:hover:text-blue-400"
-                    wire:click="sortBy('created_at')">
+                <th class="p-3">
                     Date de création
                 </th>
-                <th class="p-3 cursor-pointer hover:text-blue-500 dark:hover:text-blue-400" wire:click="sortBy('role')">
+                <th class="p-3">
                     Rôle
                 </th>
             </tr>

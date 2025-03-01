@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
-use App\Livewire\Users;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', static function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/users', Users::class)->name('users');
-
+Route::prefix('users')->middleware(['auth', 'verified'])->group(static function () {
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+});
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');

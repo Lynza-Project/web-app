@@ -63,4 +63,10 @@ class Users extends Component
     {
         $this->resetPage();
     }
+
+    #[On('userCreated')]
+    public function userCreated(): void
+    {
+        $this->dispatch('refresh');
+    }
 }
