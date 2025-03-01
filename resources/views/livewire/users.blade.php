@@ -1,4 +1,4 @@
-<div class="p-6">
+<div class="p-6 dark:bg-zinc-900 h-full">
     @livewire('search-bar', ['model' => 'search', 'width' => 'w-1/3'], key('search-bar'))
 
     <div wire:loading wire:key="loading-indicator" class="flex justify-center items-center">

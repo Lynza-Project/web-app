@@ -1,14 +1,15 @@
 <div
-    class="relative flex flex-col justify-center items-center p-6 bg-white dark:bg-gray-900 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-md">
-    <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+    class="relative flex flex-col justify-center items-center p-6 bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-md dark:shadow-none">
+    <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
         Bienvenue, {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
         <span id="wave-emoji" class="cursor-pointer">👋</span>
     </h2>
-    <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+    <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
         Nous sommes le <span class="font-semibold">{{ now()->translatedFormat('l d F Y') }}</span>.
         Passez une excellente journée !
     </p>
 </div>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

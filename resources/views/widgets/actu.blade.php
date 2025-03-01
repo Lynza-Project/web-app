@@ -10,10 +10,10 @@
          :style="'transform: translateX(-' + (current * 100) + '%)'">
 
         @foreach ($actualities as $item)
-            <div class="w-full flex-shrink-0 h-64 p-6 dark:bg-gray-900 rounded-xl shadow-md flex flex-col justify-between">
+            <div class="w-full flex-shrink-0 h-64 p-6 dark:bg-zinc-900 rounded-xl shadow-md flex flex-col justify-between">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $item->title }}</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">{{ Str::limit($item->content, 100) }}</p>
+                    <h3 class="text-lg font-semibold text-grey-900 dark:text-white">{{ $item->title }}</h3>
+                    <p class="text-sm text-grey-600 dark:text-grey-400 mt-2">{{ Str::limit($item->content, 100) }}</p>
                 </div>
                 <a href="#" class="text-blue-600 dark:text-blue-400 font-medium">
                     Lire la suite →
@@ -24,12 +24,12 @@
 
     {{-- Boutons de navigation --}}
     <button @click="current = (current === 0) ? total - 1 : current - 1"
-            class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md">
+            class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white dark:bg-zinc-800 p-2 rounded-full shadow-md">
         <x-heroicon-o-chevron-left class="w-5 h-5 text-gray-900 dark:text-white"/>
     </button>
 
     <button @click="current = (current === total - 1) ? 0 : current + 1"
-            class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-md">
+            class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white dark:bg-zinc-800 p-2 rounded-full shadow-md">
         <x-heroicon-o-chevron-right class="w-5 h-5 text-gray-900 dark:text-white"/>
     </button>
 </div>
