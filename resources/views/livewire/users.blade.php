@@ -40,7 +40,7 @@
                         @livewire('users.delete-user', ['id' => $user->id], key('delete-user-'.$user->id))
                     </td>
                     <td class="flex items-center p-3">
-                        <img src="{{ $user->profile_photo_url }}" alt="P" class="w-8 h-8 rounded-full mr-3">
+                        <img src="{{ $user->profile_picture }}" alt="P" class="w-8 h-8 rounded-full mr-3">
                         <span class="font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</span>
                     </td>
                     <td class="p-3">{{ $user->email }}</td>

@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'last_name' => 'Admin',
             'organization_id' => 1,
             'role' => 'super-admin',
-            'profile_picture' => null,
+            'profile_picture' => 'https://randomuser.me/api/portraits/men/1.jpg',
         ]);
 
         // Liste des organisations et utilisateurs dédiés
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'last_name' => $org->name,
                 'organization_id' => $org->id,
                 'role' => 'admin',
-                'profile_picture' => null,
+                'profile_picture' => 'https://randomuser.me/api/portraits/men/1.jpg',
             ]);
 
             User::create([
@@ -45,8 +45,20 @@ class UserSeeder extends Seeder
                 'last_name' => $org->name,
                 'organization_id' => $org->id,
                 'role' => 'user',
-                'profile_picture' => null,
+                'profile_picture' => 'https://randomuser.me/api/portraits/men/1.jpg',
             ]);
+
+            for ($i = 0; $i < 25; $i++) {
+                User::create([
+                    'email' => 'user' . $i . '@' . strtolower(str_replace(' ', '', $org->name)) . '.com',
+                    'password' => $password,
+                    'first_name' => 'User' . $i,
+                    'last_name' => $org->name,
+                    'organization_id' => $org->id,
+                    'role' => 'user',
+                    'profile_picture' => 'https://randomuser.me/api/portraits/men/' . $i . '.jpg',
+                ]);
+            }
         }
     }
 }
