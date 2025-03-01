@@ -22,28 +22,38 @@
                 </thead>
                 <tbody>
                 @forelse ($users as $user)
-                    <tr wire:key="user-{{ $user->id }}" class="border-b border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                    <tr wire:key="user-{{ $user->id }}"
+                        class="border-b border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         <td class="p-3">
-                            <flux:modal.trigger name="edit-user-{{ $user->id }}">
-                                <flux:button variant="primary">
-                                    <x-heroicon-o-pencil class="w-4 h-4"/>
-                                </flux:button>
-                            </flux:modal.trigger>
+                            <div class="flex items-center space-x-4">
+                                <flux:modal.trigger name="edit-user-{{ $user->id }}">
+                                    <flux:link class="text-blue-500 cursor-pointer flex items-center space-x-1">
+                                        <x-heroicon-o-pencil class="w-4 h-4"/>
+                                        <span>Modifier</span>
+                                    </flux:link>
+                                </flux:modal.trigger>
+                                @livewire('users.edit-user', ['id' => $user->id], key('edit-user-'.$user->id))
 
-                            @livewire('users.edit-user', ['id' => $user->id], key('edit-user-'.$user->id))
-
-                            <flux:modal.trigger name="delete-user-{{ $user->id }}">
-                                <flux:button variant="danger">
-                                    <x-heroicon-o-trash class="w-4 h-4"/>
-                                </flux:button>
-                            </flux:modal.trigger>
+                                @if($canDelete)
+                                    <flux:modal.trigger name="delete-user-{{ $user->id }}">
+                                        <flux:link class="text-red-500 cursor-pointer flex items-center space-x-1">
+                                            <x-heroicon-o-trash class="w-4 h-4"/>
+                                            <span>Supprimer</span>
+                                        </flux:link>
+                                    </flux:modal.trigger>
+                            </div>
 
                             @livewire('users.delete-user', ['id' => $user->id], key('delete-user-'.$user->id))
+                            @endif
                         </td>
-                        <td class="flex items-center p-3">
-                            <img src="{{ $user->profile_picture }}" alt="P" class="w-8 h-8 rounded-full mr-3">
-                            <span class="font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</span>
+
+                        <td class="p-3">
+                            <div class="flex items-center space-x-3">
+                                <img src="{{ $user->profile_picture }}" alt="P" class="w-8 h-8 rounded-full">
+                                <span class="font-semibold">{{ $user->first_name . ' ' . $user->last_name }}</span>
+                            </div>
                         </td>
+
                         <td class="p-3">{{ $user->email }}</td>
                         <td class="p-3">{{ $user->created_at->format('d/m/Y') }}</td>
                         <td class="p-3">
@@ -81,8 +91,12 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </div>

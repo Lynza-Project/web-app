@@ -15,6 +15,12 @@ class Users extends Component
     public $search = '';
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
+    public bool $canDelete = false;
+
+    public function mount(): void
+    {
+        $this->canDelete = in_array(auth()->user()->role, ['super-admin', 'admin']);
+    }
 
     /**
      * @param string $field
