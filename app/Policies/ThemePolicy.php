@@ -12,30 +12,36 @@ class ThemePolicy
 
     public function viewAny(User $user): bool
     {
-
+        return $user->role === 'super-admin';
     }
 
     public function view(User $user, Theme $theme): bool
     {
+        return $user->role === 'super-admin' || $user->organization->id === $theme->organization->id;
     }
 
     public function create(User $user): bool
     {
+        return $user->role === 'super-admin' || $user->role === 'admin';
     }
 
     public function update(User $user, Theme $theme): bool
     {
+        return $user->role === 'super-admin' || $user->organization->id === $theme->organization->id;
     }
 
     public function delete(User $user, Theme $theme): bool
     {
+        return $user->role === 'super-admin' || $user->organization->id === $theme->organization->id;
     }
 
-    public function restore(User $user, Theme $theme): bool
+    public function restore(User $user): bool
     {
+        return $user->role === 'super-admin';
     }
 
-    public function forceDelete(User $user, Theme $theme): bool
+    public function forceDelete(User $user): bool
     {
+        return $user->role === 'super-admin';
     }
 }

@@ -10,32 +10,38 @@ class LostAndFoundCategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function viewAny(): bool
     {
-
+        return true;
     }
 
-    public function view(User $user, LostAndFoundCategory $lostAndFoundCategory): bool
+    public function view(): bool
     {
+        return true;
     }
 
     public function create(User $user): bool
     {
+        return $user->role === 'super-admin';
     }
 
-    public function update(User $user, LostAndFoundCategory $lostAndFoundCategory): bool
+    public function update(User $user): bool
     {
+        return $user->role === 'super-admin';
     }
 
-    public function delete(User $user, LostAndFoundCategory $lostAndFoundCategory): bool
+    public function delete(User $user): bool
     {
+        return $user->role === 'super-admin';
     }
 
-    public function restore(User $user, LostAndFoundCategory $lostAndFoundCategory): bool
+    public function restore(User $user): bool
     {
+        return $user->role === 'super-admin';
     }
 
-    public function forceDelete(User $user, LostAndFoundCategory $lostAndFoundCategory): bool
+    public function forceDelete(User $user): bool
     {
+        return $user->role === 'super-admin';
     }
 }
