@@ -21,6 +21,9 @@
                                    :current="request()->routeIs('users.index')"
                                    wire:navigate>{{ __('Annuaire des utilisateurs') }}</flux:navlist.item>
             @endif
+            <flux:navlist.item icon="newspaper" :href="route('actualities.index')"
+                               :current="request()->routeIs('actualities.index')"
+                               wire:navigate>{{ __('Actualités') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>
 
