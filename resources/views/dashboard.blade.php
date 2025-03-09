@@ -5,12 +5,12 @@
                 @include('widgets.hello')
             </div>
 
-            <div class="min-h-64 md:h-64  flex justify-center w-full">
+            <div class="min-h-64 md:h-64 flex justify-center w-full">
                 @include('widgets.actu')
             </div>
 
-            <div class="min-h-64 md:h-64  w-full relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+            <div class="min-h-64 md:h-64 flex justify-center w-full">
+                @include('widgets.weather')
             </div>
 
             <div class="min-h-64 md:h-64  w-full relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">

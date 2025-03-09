@@ -18,8 +18,8 @@
                     <p class="text-sm text-grey-600 dark:text-grey-400 mt-2">{{ Str::limit($item->content) }}</p>
                 </div>
                 <img src="{{ asset('img/university.jpg') }}" alt="Actuality"
-                     class="w-full h-32 object-cover rounded-xl mt-4">
-                <a href="#" class="text-blue-600 dark:text-blue-400 font-medium mt-auto">
+                     class="w-64 h-32 object-cover rounded-xl mt-4 mx-auto">
+                <a href="#" class="text-blue-600 dark:text-blue-400 font-medium mt-auto text-right">
                     Lire la suite →
                 </a>
             </div>
