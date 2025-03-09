@@ -10,9 +10,10 @@ Route::get('/', static function () {
     return view('welcome');
 })->name('home');
 
-Route::prefix('users')->middleware(['auth', 'verified'])->group(static function () {
-    Route::get('/', [UserController::class, 'index'])->name('users.index');
+Route::middleware(['auth', 'verified'])->group(static function () {
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
 });
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
