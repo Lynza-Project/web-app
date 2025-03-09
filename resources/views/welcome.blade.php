@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lynza - L'intranet Réinventé 🚀</title>
+    <link rel="icon" href="{{ asset('img/lynza_couleurs-svg.svg') }}" type="image/x-icon" />
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -13,7 +14,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <a href="#" class="text-2xl font-extrabold text-blue-600 tracking-wide hover:text-blue-700 transition">
-                Lynza
+                <img src="{{ asset('img/lynza_couleurs-svg.svg') }}" alt="Lynza" class="h-16">
             </a>
 
             <div class="hidden md:flex space-x-8">
