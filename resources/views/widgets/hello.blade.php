@@ -4,7 +4,7 @@
         Bienvenue, {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
         <span id="wave-emoji" class="cursor-pointer">👋</span>
     </h2>
-    <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
+    <p class="text-gray-600 dark:text-gray-300 text-sm mt-2 text-center">
         Nous sommes le <span class="font-semibold">{{ now()->translatedFormat('l d F Y') }}</span>.
         Passez une excellente journée !
     </p>

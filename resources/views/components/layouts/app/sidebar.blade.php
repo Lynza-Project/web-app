@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use App\Helpers\UserHelper; @endphp
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     @include('partials.head')
@@ -15,15 +16,21 @@
         <flux:navlist.group heading="Espaces" class="grid">
             <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                                wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-            <flux:navlist.item icon="users" :href="route('users.index')" :current="request()->routeIs('users.index')"
-                               wire:navigate>{{ __('Annuaire des utilisateurs') }}</flux:navlist.item>
+            @if(UserHelper::isAdministrator())
+                <flux:navlist.item icon="users" :href="route('users.index')"
+                                   :current="request()->routeIs('users.index')"
+                                   wire:navigate>{{ __('Annuaire des utilisateurs') }}</flux:navlist.item>
+            @endif
+            <flux:navlist.item icon="newspaper" :href="route('actualities.index')"
+                               :current="request()->routeIs('actualities.index')"
+                               wire:navigate>{{ __('Actualités') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>
 
     <flux:spacer/>
 
     <flux:navlist variant="outline">
-        @if(Auth()->user()->isSuperAdmin())
+        @if(UserHelper::isSuperAdministrator())
             <flux:navlist.group heading="Administration" class="grid">
                 <flux:navlist.item icon="shield-check" href="/superadmin" target="_blank" class="text-red">
                     {{ __('Back Office') }}

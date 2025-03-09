@@ -7,8 +7,8 @@
 
         <div class="w-fit">
             <flux:modal.trigger name="create-user">
-                <flux:button>
-                    <x-heroicon-o-plus class="w-4 h-4"/>
+                <flux:button  variant="primary">
+                    <x-heroicon-o-plus class="w-4 h-4" />
                     Créer un utilisateur
                 </flux:button>
             </flux:modal.trigger>

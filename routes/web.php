@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActualityController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -10,9 +11,13 @@ Route::get('/', static function () {
     return view('welcome');
 })->name('home');
 
-Route::prefix('users')->middleware(['auth', 'verified'])->group(static function () {
-    Route::get('/', [UserController::class, 'index'])->name('users.index');
+Route::middleware(['auth', 'verified'])->group(static function () {
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+
+    Route::get('actualities', [ActualityController::class, 'index'])->name('actualities.index');
+    Route::get('actualities/{actuality}', [ActualityController::class, 'show'])->name('actualities.show');
 });
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
