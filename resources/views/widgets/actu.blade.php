@@ -6,13 +6,13 @@
         ->get();
 @endphp
 <div x-data="{ current: 0, total: {{ count($actualities) }} }"
-     class="relative w-full max-w-lg mx-auto overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-lg">
+     class="relative w-full max-w-lg mx-auto h-64 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-lg dark:shadow-none bg-white dark:bg-zinc-900">
     <div class="flex transition-transform duration-500 ease-in-out"
          :style="'transform: translateX(-' + (current * 100) + '%)'">
 
         @foreach ($actualities as $item)
             <div
-                class="w-full flex-shrink-0 min-h-64 md:h-64 p-6 dark:bg-zinc-900 rounded-xl shadow-md flex flex-col justify-between">
+                class="w-full flex-shrink-0 h-64 p-6 bg-white dark:bg-zinc-900 flex flex-col justify-between">
                 <div class="flex-grow">
                     <h3 class="text-lg font-semibold text-grey-900 dark:text-white">{{ $item->title }}</h3>
                     <p class="text-sm text-grey-600 dark:text-grey-400 mt-2">{{ Str::limit($item->content) }}</p>
