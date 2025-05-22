@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Users;
 
+use App\Models\User;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\User;
 
 class Users extends Component
 {
@@ -50,7 +50,7 @@ class Users extends Component
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10);
 
-        return view('livewire.users', compact('users'));
+        return view('livewire.users.table', compact('users'));
     }
 
     /*** Fonctions utiles ***/
