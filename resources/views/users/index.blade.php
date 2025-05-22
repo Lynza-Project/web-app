@@ -12,19 +12,7 @@
             </p>
         </div>
 
-        <div class="w-fit">
-            <flux:modal.trigger name="create-user">
-                <flux:button  variant="primary">
-                    <x-heroicon-o-plus class="w-4 h-4" />
-                    Créer un utilisateur
-                </flux:button>
-            </flux:modal.trigger>
-        </div>
-        <div
-            class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            @livewire('users')
-        </div>
+        @livewire('users.create')
+        @livewire('users')
     </div>
-    @livewire('users.create-user')
-
 </x-layouts.app>
