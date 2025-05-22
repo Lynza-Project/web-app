@@ -13,6 +13,6 @@
         </div>
 
         @livewire('users.create')
-        @livewire('users.users')
+        @livewire('users.table')
     </div>
 </x-layouts.app>
