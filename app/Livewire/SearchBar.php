@@ -34,7 +34,8 @@ class SearchBar extends Component
      */
     public function updated(): void
     {
-        $this->dispatch('searchUpdated', $this->model);
+        // The searchUpdated event is now dispatched directly from the blade template
+        // with the actual search value
     }
 
 }

@@ -16,6 +16,9 @@ Route::middleware(['auth', 'verified'])->group(static function () {
 
     Route::get('actualities', [ActualityController::class, 'index'])->name('actualities.index');
     Route::get('actualities/{actuality}', [ActualityController::class, 'show'])->name('actualities.show');
+    Route::get('actualities/{actuality}/edit', [ActualityController::class, 'edit'])->name('actualities.edit');
+    Route::put('actualities/{actuality}', [ActualityController::class, 'update'])->name('actualities.update');
+    Route::delete('actualities/{actuality}', [ActualityController::class, 'destroy'])->name('actualities.destroy');
 });
 
 Route::view('dashboard', 'dashboard')

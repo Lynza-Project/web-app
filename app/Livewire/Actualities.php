@@ -58,7 +58,7 @@ class Actualities extends Component
     #[On('searchUpdated')]
     public function searchUpdated($search): void
     {
-        $this->search = $search;
+        $this->search = is_array($search) ? $search[0] : $search;
         $this->resetPage();
     }
 

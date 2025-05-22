@@ -9,14 +9,16 @@
             <flux:breadcrumbs.item>Actualités</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
+        <div class="bg-blue-50 border-t border-b border-blue-300 text-blue-600 px-4 py-3 rounded rounded-lg dark:bg-blue-900 dark:text-blue-100 dark:border-blue-700">
+            <p class="font-bold">Actualités 📰</p>
+            <p class="text-sm">
+                Retrouvez la liste de toutes les actualités de votre organisation. Vous pouvez en ajouter, les modifier ou les supprimer !
+            </p>
+        </div>
+
         @if(UserHelper::isAdministrator())
             <div class="w-fit">
-                <flux:modal.trigger name="create-actuality">
-                    <flux:button variant="primary">
-                        <x-heroicon-o-plus class="w-4 h-4"/>
-                        Ajouter une actualité
-                    </flux:button>
-                </flux:modal.trigger>
+                @livewire('actualities.create')
             </div>
         @endif
 
