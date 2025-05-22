@@ -18,9 +18,20 @@
             </a>
 
             <div class="hidden md:flex space-x-8">
-                <a href="#features" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">✨ Fonctionnalités</a>
-                <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition">📌 À Propos</a>
-                <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition"> 📩 Contact</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 relative group animate__animated animate__fadeIn animate__delay-1s">
+                        <span class="block">✨ Fonctionnalités</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 relative group animate__animated animate__fadeIn animate__delay-2s">
+                        <span class="block">📌 À Propos</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 relative group animate__animated animate__fadeIn animate__delay-3s">
+                        <span class="block">📩 Contact</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
             </div>
 
             @auth
@@ -44,9 +55,20 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-4 mt-2 bg-white shadow-lg rounded-lg p-4">
-            <a href="#features" class="nav-link block text-gray-700 hover:text-blue-600 font-medium transition">✨ Fonctionnalités</a>
-            <a href="#about" class="nav-link block text-gray-700 hover:text-blue-600 font-medium transition"> 📌 À Propos</a>
-            <a href="#contact" class="nav-link block text-gray-700 hover:text-blue-600 font-medium transition">📩 Contact</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 relative group animate__animated animate__fadeIn animate__delay-1s">
+                    <span class="block">✨ Fonctionnalités</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 relative group animate__animated animate__fadeIn animate__delay-2s">
+                    <span class="block">📌 À Propos</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 relative group animate__animated animate__fadeIn animate__delay-3s">
+                    <span class="block">📩 Contact</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
             @auth
                 <a href="{{ route('dashboard') }}"
                    class="md:inline-block px-5 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 transition">
