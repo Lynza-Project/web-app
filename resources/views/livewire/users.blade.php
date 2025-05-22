@@ -21,9 +21,7 @@
                     <td class="p-3">
                         <div class="flex items-center space-x-4">
                             <flux:tooltip content="Voir les détails">
-                                <a href="#">
-                                    <flux:icon name="information-circle" class="cursor-pointer text-blue-600" />
-                                </a>
+                                @livewire('users.show', ['user' => $user], key("show-{$user->id}-{$index}"))
                             </flux:tooltip>
                             <flux:tooltip content="Modifier">
                                 @livewire('users.update', ['user' => $user], key("update-{$user->id}-{$index}"))
