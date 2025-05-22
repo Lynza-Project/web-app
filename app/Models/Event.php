@@ -18,6 +18,7 @@ class Event extends Model
         'description',
         'date',
         'location',
+        'image',
     ];
 
     public function organization(): BelongsTo

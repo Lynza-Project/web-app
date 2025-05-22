@@ -31,7 +31,7 @@
 
                     @if ($image)
                         <div class="mt-2">
-                            <img src="{{ $image->temporaryUrl() }}" class="h-32 w-auto object-cover rounded-lg">
+                            <img alt="Image of the actuality" src="{{ Storage::disk('s3')->url($image->temporaryUrl()) }}" class="h-32 w-auto object-cover rounded-lg">
                         </div>
                     @endif
                 </div>

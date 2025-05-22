@@ -14,22 +14,20 @@ class Edit extends Component
     public Actuality $actuality;
     public string $title = '';
     public string $content = '';
-    public $image = null;
-    public $newImage = null;
+    public $image;
+    public $newImage;
 
     protected function rules()
     {
         return [
             'title' => 'required',
             'content' => 'required',
-            'newImage' => 'nullable|image|max:1024',
         ];
     }
 
     protected $validationAttributes = [
         'title' => 'titre',
         'content' => 'contenu',
-        'newImage' => 'image',
     ];
 
     public function mount(Actuality $actuality): void
@@ -50,7 +48,7 @@ class Edit extends Component
         ];
 
         if ($this->newImage) {
-            $data['image'] = $this->newImage->store('actualities', 'public');
+            $data['image'] = $this->newImage->store('actualities/' . auth()->user()->organization_id, 'public');
         }
 
         $this->actuality->update($data);

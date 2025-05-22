@@ -13,18 +13,16 @@ class Create extends Component
 
     public string $title = '';
     public string $content = '';
-    public $image = null;
+    public $image;
 
     protected $rules = [
         'title' => 'required',
         'content' => 'required',
-        'image' => 'nullable|image|max:1024',
     ];
 
     protected $validationAttributes = [
         'title' => 'titre',
         'content' => 'contenu',
-        'image' => 'image',
     ];
 
     public function createActuality(): void
@@ -39,14 +37,16 @@ class Create extends Component
         ];
 
         if ($this->image) {
-            $data['image'] = $this->image->store('actualities', 'public');
+            $data['image'] = $this->image->store('actualities/' . auth()->user()->organization_id, 'public');
+        } else {
+            $data['image'] = null;
         }
 
         Actuality::create($data);
 
         $this->reset(['title', 'content', 'image']);
 
-        $this->modal('create-actuality')->close();
+        self::modal('create-actuality')->close();
 
         $this->dispatch('actualityCreated');
     }

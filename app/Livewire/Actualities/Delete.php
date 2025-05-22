@@ -19,7 +19,7 @@ class Delete extends Component
     {
         $this->actuality->delete();
 
-        $this->modal('delete-actuality-' . $this->actuality->id)->close();
+        self::modal('delete-actuality-' . $this->actuality->id)->close();
 
         $this->dispatch('actualityDeleted');
 

@@ -5,8 +5,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($actualities as $actuality)
                 <div
-                    class="flex flex-col bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-md overflow-hidden">
-                    <img src="{{ asset($actuality->image ?? 'img\university.jpg') }}" alt="Image Actualité"
+                    class="flex flex-col bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-md overflow-hidden"
+                    wire:key="actuality-{{ $actuality->id }}">
+                    <img src="{{ $actuality->image ? Storage::disk('s3')->temporaryUrl($actuality->image, now()->addMinutes(5)) : asset('img\university.jpg') }}" alt="Image Actualité"
                          class="w-full h-40 object-cover">
 
                     <div class="p-4 flex flex-col flex-1">
@@ -17,10 +18,15 @@
 
                             @if($canDelete)
                                 <div class="flex space-x-2">
-                                    <a href="{{ route('actualities.edit', $actuality) }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-                                        <x-heroicon-o-pencil class="w-5 h-5"/>
-                                    </a>
-                                    @livewire('actualities.delete', ['actuality' => $actuality], key("delete-{$actuality->id}"))
+                                    <flux:tooltip content="Modifier">
+                                        <a href="{{ route('actualities.edit', $actuality) }}"
+                                           class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
+                                            <x-heroicon-o-pencil class="w-5 h-5"/>
+                                        </a>
+                                    </flux:tooltip>
+                                    <flux:tooltip content="Supprimer">
+                                        @livewire('actualities.delete', ['actuality' => $actuality], key("delete-{$actuality->id}"))
+                                    </flux:tooltip>
                                 </div>
                             @endif
                         </div>
