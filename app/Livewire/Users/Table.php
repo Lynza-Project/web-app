@@ -8,7 +8,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Users extends Component
+class Table extends Component
 {
     use WithPagination;
 

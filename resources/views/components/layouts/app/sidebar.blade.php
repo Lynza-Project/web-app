@@ -42,7 +42,7 @@
     <!-- Desktop User Menu -->
     <flux:dropdown position="bottom" align="start">
         <flux:profile
-            :name="auth()->user()->name"
+            :name="auth()->user()->first_name"
             :avatar="auth()->user()->profile_picture"
             icon-trailing="chevrons-up-down"
         />
@@ -59,7 +59,7 @@
                                 </span>
 
                         <div class="grid flex-1 text-left text-sm leading-tight">
-                            <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                            <span class="truncate font-semibold">{{ auth()->user()->first_name }}</span>
                             <span class="truncate text-xs">{{ auth()->user()->email }}</span>
                         </div>
                     </div>
