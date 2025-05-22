@@ -15,7 +15,10 @@ class Edit extends Component
     public string $title = '';
     public string $description = '';
     public string $location = '';
-    public $date;
+    public $start_date;
+    public $end_date = null;
+    public $start_time = null;
+    public $end_time = null;
     public $image;
     public $newImage;
 
@@ -24,7 +27,10 @@ class Edit extends Component
         return [
             'title' => 'required',
             'description' => 'required',
-            'date' => 'required|date',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'start_time' => 'nullable|date_format:H:i',
+            'end_time' => 'nullable|date_format:H:i|after:start_time',
             'location' => 'required',
         ];
     }
@@ -32,7 +38,10 @@ class Edit extends Component
     protected $validationAttributes = [
         'title' => 'titre',
         'description' => 'description',
-        'date' => 'date',
+        'start_date' => 'date de début',
+        'end_date' => 'date de fin',
+        'start_time' => 'heure de début',
+        'end_time' => 'heure de fin',
         'location' => 'lieu',
     ];
 
@@ -41,7 +50,10 @@ class Edit extends Component
         $this->event = $event;
         $this->title = $event->title;
         $this->description = $event->description;
-        $this->date = $event->date;
+        $this->start_date = $event->start_date;
+        $this->end_date = $event->end_date;
+        $this->start_time = $event->start_time ? $event->start_time->format('H:i') : null;
+        $this->end_time = $event->end_time ? $event->end_time->format('H:i') : null;
         $this->location = $event->location;
         $this->image = $event->image;
     }
@@ -53,7 +65,10 @@ class Edit extends Component
         $data = [
             'title' => $this->title,
             'description' => $this->description,
-            'date' => $this->date,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time,
             'location' => $this->location,
         ];
 

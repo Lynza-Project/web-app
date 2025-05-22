@@ -33,8 +33,15 @@
 
                         <div class="flex items-center space-x-2 mt-2 text-sm text-gray-600 dark:text-gray-400">
                             <x-heroicon-o-calendar class="w-4 h-4"/>
-                            <span>{{ $event->date->translatedFormat('d F Y') }}</span>
+                            <span>{{ $event->getFormattedDateRange() }}</span>
                         </div>
+
+                        @if($event->hasTimeInfo())
+                        <div class="flex items-center space-x-2 mt-1 text-sm text-gray-600 dark:text-gray-400">
+                            <x-heroicon-o-clock class="w-4 h-4"/>
+                            <span>{{ $event->getFormattedTimeRange() }}</span>
+                        </div>
+                        @endif
 
                         <div class="flex items-center space-x-2 mt-1 text-sm text-gray-600 dark:text-gray-400">
                             <x-heroicon-o-map-pin class="w-4 h-4"/>

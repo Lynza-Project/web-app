@@ -13,7 +13,7 @@ class Events extends Component
     use WithPagination;
 
     public $search = '';
-    public $sortField = 'date';
+    public $sortField = 'start_date';
     public $sortDirection = 'desc';
     public bool $canDelete = false;
 

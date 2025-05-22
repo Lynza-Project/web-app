@@ -73,11 +73,19 @@
                         @endif
                     </div>
 
-                    <div class="flex items-center space-x-4 mb-4">
+                    <div class="flex flex-col space-y-2 mb-4">
                         <div class="flex items-center text-gray-600 dark:text-gray-400">
                             <x-heroicon-o-calendar class="w-5 h-5 mr-1"/>
-                            <span>{{ $event->date->translatedFormat('d F Y') }}</span>
+                            <span>{{ $event->getFormattedDateRange() }}</span>
                         </div>
+
+                        @if($event->hasTimeInfo())
+                        <div class="flex items-center text-gray-600 dark:text-gray-400">
+                            <x-heroicon-o-clock class="w-5 h-5 mr-1"/>
+                            <span>{{ $event->getFormattedTimeRange() }}</span>
+                        </div>
+                        @endif
+
                         <div class="flex items-center text-gray-600 dark:text-gray-400">
                             <x-heroicon-o-map-pin class="w-5 h-5 mr-1"/>
                             <span>{{ $event->location }}</span>

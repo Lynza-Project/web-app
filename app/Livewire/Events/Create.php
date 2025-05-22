@@ -14,20 +14,29 @@ class Create extends Component
     public string $title = '';
     public string $description = '';
     public string $location = '';
-    public $date;
+    public $start_date;
+    public $end_date = null;
+    public $start_time = null;
+    public $end_time = null;
     public $image;
 
     protected $rules = [
         'title' => 'required',
         'description' => 'required',
-        'date' => 'required|date',
+        'start_date' => 'required|date',
+        'end_date' => 'nullable|date|after_or_equal:start_date',
+        'start_time' => 'nullable|date_format:H:i',
+        'end_time' => 'nullable|date_format:H:i|after:start_time',
         'location' => 'required',
     ];
 
     protected $validationAttributes = [
         'title' => 'titre',
         'description' => 'description',
-        'date' => 'date',
+        'start_date' => 'date de début',
+        'end_date' => 'date de fin',
+        'start_time' => 'heure de début',
+        'end_time' => 'heure de fin',
         'location' => 'lieu',
     ];
 
@@ -38,7 +47,10 @@ class Create extends Component
         $data = [
             'title' => $this->title,
             'description' => $this->description,
-            'date' => $this->date,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time,
             'location' => $this->location,
             'organization_id' => auth()->user()->organization_id,
             'user_id' => auth()->id(),
@@ -52,7 +64,7 @@ class Create extends Component
 
         Event::create($data);
 
-        $this->reset(['title', 'description', 'date', 'location', 'image']);
+        $this->reset(['title', 'description', 'start_date', 'end_date', 'start_time', 'end_time', 'location', 'image']);
 
         self::modal('create-event')->close();
 
