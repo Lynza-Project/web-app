@@ -18,7 +18,7 @@
                              class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                         <div class="absolute bottom-3 left-4 right-4">
-                            <span class="px-2.5 py-1 text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300 rounded-full">
+                            <span class="px-2.5 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 rounded-full">
                                 {{ $item->created_at->format('d M Y') }}
                             </span>
                         </div>
@@ -27,7 +27,7 @@
                         <h3 class="text-lg font-semibold text-slate-800 dark:text-white">{{ $item->title }}</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 flex-grow">{{ Str::limit($item->content, 100) }}</p>
                         <a href="{{ route('actualities.show', $item) }}"
-                           class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 font-medium mt-2 inline-flex items-center">
+                           class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium mt-2 inline-flex items-center">
                             Lire la suite
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -53,7 +53,7 @@
             @php $actualitiesCount = count($actualities); @endphp
             @for ($i = 0; $i < $actualitiesCount; $i++)
                 <button @click="current = {{ $i }}"
-                        :class="{'bg-purple-600': current === {{ $i }}, 'bg-slate-300 dark:bg-slate-600': current !== {{ $i }}}"
+                        :class="{'bg-indigo-600': current === {{ $i }}, 'bg-slate-300 dark:bg-slate-600': current !== {{ $i }}}"
                         class="w-2 h-2 rounded-full transition-colors duration-200"></button>
             @endfor
         </div>
