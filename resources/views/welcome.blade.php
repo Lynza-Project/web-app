@@ -22,7 +22,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <a href="#" class="text-2xl font-extrabold text-indigo-600 tracking-wide hover:text-indigo-700 transition">
-                <img src="{{ asset('img/lynza_couleurs-svg.svg') }}" alt="Lynza" class="h-12">
+                <img src="{{ asset('img/lynza_couleurs-svg.svg') }}" alt="Lynza" class="h-20">
             </a>
 
             <div class="hidden md:flex space-x-10">
@@ -43,12 +43,12 @@
             @auth
                 <a href="{{ route('dashboard') }}"
                    class="hidden md:inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
-                    <span>📊 Dashboard</span>
+                    <span> Dashboard</span>
                 </a>
             @else
                 <a href="{{ route('login') }}"
                    class="hidden md:inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
-                    <span>🔑 Connexion</span>
+                    <span> Connexion</span>
                 </a>
             @endauth
 
