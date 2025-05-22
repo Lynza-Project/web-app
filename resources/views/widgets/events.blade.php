@@ -19,7 +19,7 @@
                 </div>
                 <img src="{{ asset('img/event-default.jpg') }}" alt="Event"
                      class="w-64 h-32 object-cover rounded-xl mt-4 mx-auto">
-                <a href="#" class="text-blue-600 dark:text-blue-400 font-medium mt-auto text-right">
+                <a href="{{ route('events.show', $item) }}" class="text-blue-600 dark:text-blue-400 font-medium mt-auto text-right">
                     Découvrir →
                 </a>
             </div>

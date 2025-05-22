@@ -19,7 +19,7 @@
                 </div>
                 <img src="{{ asset('img/university.jpg') }}" alt="Actuality"
                      class="w-64 h-32 object-cover rounded-xl mt-4 mx-auto">
-                <a href="#" class="text-blue-600 dark:text-blue-400 font-medium mt-auto text-right">
+                <a href="{{ route('actualities.show', $item) }}" class="text-blue-600 dark:text-blue-400 font-medium mt-auto text-right">
                     Lire la suite →
                 </a>
             </div>
