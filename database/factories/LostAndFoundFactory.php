@@ -15,11 +15,11 @@ class LostAndFoundFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word(),
-            'description' => $this->faker->text(),
+            'title' => fake()->word(),
+            'description' => fake()->text(),
             'date_lost' => Carbon::now(),
-            'location' => $this->faker->word(),
-            'status' => $this->faker->randomElement(['lost', 'found', 'claimed']),
+            'location' => fake()->word(),
+            'status' => fake()->randomElement(['lost', 'found', 'claimed']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

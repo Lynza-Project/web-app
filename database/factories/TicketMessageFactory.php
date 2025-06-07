@@ -16,7 +16,7 @@ class TicketMessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => $this->faker->word(),
+            'content' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

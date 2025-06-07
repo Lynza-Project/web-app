@@ -14,11 +14,11 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
-            'number' => $this->faker->word(),
-            'name' => $this->faker->name(),
-            'zip_code' => $this->faker->postcode(),
-            'country' => $this->faker->country(),
-            'region' => $this->faker->word(),
+            'number' => fake()->word(),
+            'name' => fake()->name(),
+            'zip_code' => fake()->postcode(),
+            'country' => fake()->country(),
+            'region' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 
