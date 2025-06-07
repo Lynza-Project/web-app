@@ -16,6 +16,7 @@ class Actuality extends Model
         'user_id',
         'title',
         'content',
+        'image',
     ];
 
     public function organization(): BelongsTo

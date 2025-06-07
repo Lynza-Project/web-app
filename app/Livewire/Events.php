@@ -2,18 +2,18 @@
 
 namespace App\Livewire;
 
-use App\Models\Actuality;
+use App\Models\Event;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Actualities extends Component
+class Events extends Component
 {
     use WithPagination;
 
     public $search = '';
-    public $sortField = 'created_at';
+    public $sortField = 'start_date';
     public $sortDirection = 'desc';
     public bool $canDelete = false;
 
@@ -41,16 +41,17 @@ class Actualities extends Component
      */
     public function render(): View
     {
-        $actualities = Actuality::query()
+        $events = Event::query()
             ->where('organization_id', auth()->user()->organization_id)
             ->where(function ($query) {
                 $query->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('content', 'like', '%' . $this->search . '%');
+                    ->orWhere('description', 'like', '%' . $this->search . '%')
+                    ->orWhere('location', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(6);
 
-        return view('livewire.actualities', compact('actualities'));
+        return view('livewire.events', compact('events'));
     }
 
     /*** Fonctions utiles ***/
@@ -70,20 +71,20 @@ class Actualities extends Component
         $this->resetPage();
     }
 
-    #[On('actualityCreated')]
-    public function actualityCreated(): void
+    #[On('eventCreated')]
+    public function eventCreated(): void
     {
         $this->dispatch('refresh');
     }
 
-    #[On('actualityEdited')]
-    public function actualityEdited(): void
+    #[On('eventEdited')]
+    public function eventEdited(): void
     {
         $this->dispatch('refresh');
     }
 
-    #[On('actualityDeleted')]
-    public function actualityDeleted(): void
+    #[On('eventDeleted')]
+    public function eventDeleted(): void
     {
         $this->dispatch('refresh');
     }

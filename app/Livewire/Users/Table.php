@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Users;
 
+use App\Models\User;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\User;
 
-class Users extends Component
+class Table extends Component
 {
     use WithPagination;
 
@@ -50,7 +50,7 @@ class Users extends Component
             ->orderBy($this->sortField, $this->sortDirection)
             ->paginate(10);
 
-        return view('livewire.users', compact('users'));
+        return view('livewire.users.table', compact('users'));
     }
 
     /*** Fonctions utiles ***/
@@ -58,7 +58,7 @@ class Users extends Component
     #[On('searchUpdated')]
     public function searchUpdated($search): void
     {
-        $this->search = $search;
+        $this->search = is_array($search) ? $search[0] : $search;
         $this->resetPage();
     }
 
@@ -76,8 +76,8 @@ class Users extends Component
         $this->dispatch('refresh');
     }
 
-    #[On('userEdited')]
-    public function userEdited(): void
+    #[On('userUpdated')]
+    public function userUpdated(): void
     {
         $this->dispatch('refresh');
     }

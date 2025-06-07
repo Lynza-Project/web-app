@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActualityController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -16,6 +17,15 @@ Route::middleware(['auth', 'verified'])->group(static function () {
 
     Route::get('actualities', [ActualityController::class, 'index'])->name('actualities.index');
     Route::get('actualities/{actuality}', [ActualityController::class, 'show'])->name('actualities.show');
+    Route::get('actualities/{actuality}/edit', [ActualityController::class, 'edit'])->name('actualities.edit');
+    Route::put('actualities/{actuality}', [ActualityController::class, 'update'])->name('actualities.update');
+    Route::delete('actualities/{actuality}', [ActualityController::class, 'destroy'])->name('actualities.destroy');
+
+    Route::get('events', [EventController::class, 'index'])->name('events.index');
+    Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
+    Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::put('events/{event}', [EventController::class, 'update'])->name('events.update');
+    Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 });
 
 Route::view('dashboard', 'dashboard')

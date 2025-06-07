@@ -7,7 +7,7 @@ use Hash;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class CreateUser extends Component
+class Create extends Component
 {
     public string $first_name = '';
     public string $last_name = '';
@@ -50,7 +50,7 @@ class CreateUser extends Component
 
     public function render(): View
     {
-        return view('livewire.users.create-user');
+        return view('livewire.users.create');
     }
 }
 
