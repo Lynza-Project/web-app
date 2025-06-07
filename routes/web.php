@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActualityController;
+use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Settings\Appearance;
@@ -26,6 +27,12 @@ Route::middleware(['auth', 'verified'])->group(static function () {
     Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
     Route::put('events/{event}', [EventController::class, 'update'])->name('events.update');
     Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+  
+    Route::get('documentations', [DocumentationController::class, 'index'])->name('documentations.index');
+    Route::get('documentations/{documentation}', [DocumentationController::class, 'show'])->name('documentations.show');
+    Route::get('documentations/{documentation}/edit', [DocumentationController::class, 'edit'])->name('documentations.edit');
+    Route::put('documentations/{documentation}', [DocumentationController::class, 'update'])->name('documentations.update');
+    Route::delete('documentations/{documentation}', [DocumentationController::class, 'destroy'])->name('documentations.destroy');
 });
 
 Route::view('dashboard', 'dashboard')

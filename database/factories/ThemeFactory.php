@@ -14,14 +14,14 @@ class ThemeFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word(),
-            'primary' => $this->faker->word(),
-            'danger' => $this->faker->word(),
-            'gray' => $this->faker->word(),
-            'info' => $this->faker->word(),
-            'success' => $this->faker->word(),
-            'warning' => $this->faker->word(),
-            'font' => $this->faker->word(),
+            'title' => fake()->word(),
+            'primary' => fake()->word(),
+            'danger' => fake()->word(),
+            'gray' => fake()->word(),
+            'info' => fake()->word(),
+            'success' => fake()->word(),
+            'warning' => fake()->word(),
+            'font' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 
