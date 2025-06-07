@@ -17,7 +17,10 @@ class EventFactory extends Factory
         return [
             'title' => fake()->word(),
             'description' => fake()->text(),
-            'date' => Carbon::now(),
+            'start_date' => Carbon::now()->addDays(1),
+            'end_date' => Carbon::now()->addDays(2),
+            'start_time' => Carbon::now()->addHours(1)->format('H:i'),
+            'end_time' => Carbon::now()->addHours(2)->format('H:i'),
             'location' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
