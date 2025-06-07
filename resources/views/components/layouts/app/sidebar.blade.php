@@ -22,8 +22,11 @@
                                    wire:navigate>{{ __('Annuaire des utilisateurs') }}</flux:navlist.item>
             @endif
             <flux:navlist.item icon="newspaper" :href="route('actualities.index')"
-                               :current="request()->routeIs('actualities.index')"
+                               :current="request()->routeIs('actualities.*')"
                                wire:navigate>{{ __('Actualités') }}</flux:navlist.item>
+            <flux:navlist.item icon="calendar" :href="route('events.index')"
+                               :current="request()->routeIs('events.*')"
+                               wire:navigate>{{ __('Événements') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>
 
@@ -42,7 +45,7 @@
     <!-- Desktop User Menu -->
     <flux:dropdown position="bottom" align="start">
         <flux:profile
-            :name="auth()->user()->name"
+            :name="auth()->user()->first_name"
             :avatar="auth()->user()->profile_picture"
             icon-trailing="chevrons-up-down"
         />
@@ -59,7 +62,7 @@
                                 </span>
 
                         <div class="grid flex-1 text-left text-sm leading-tight">
-                            <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                            <span class="truncate font-semibold">{{ auth()->user()->first_name }}</span>
                             <span class="truncate text-xs">{{ auth()->user()->email }}</span>
                         </div>
                     </div>

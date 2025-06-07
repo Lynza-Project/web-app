@@ -1,5 +1,5 @@
 <div
-    class="relative flex flex-col justify-center items-center p-6 bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-md dark:shadow-none">
+    class="relative w-full max-w-lg mx-auto h-64 flex flex-col justify-center items-center p-6 bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-lg dark:shadow-none overflow-hidden">
     <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
         Bienvenue, {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
         <span id="wave-emoji" class="cursor-pointer">👋</span>
@@ -31,4 +31,3 @@
         }
     });
 </script>
-

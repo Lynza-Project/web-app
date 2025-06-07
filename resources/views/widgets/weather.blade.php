@@ -2,7 +2,7 @@
      x-init="fetch('https://api.open-meteo.com/v1/forecast?latitude=48.8566&longitude=2.3522&current_weather=true&timezone=Europe/Paris')
             .then(response => response.json())
             .then(data => weather = data.current_weather)"
-     class="relative flex flex-col justify-between items-center p-6 bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-md dark:shadow-none w-full max-w-lg h-64">
+     class="relative w-full max-w-lg mx-auto h-64 flex flex-col justify-between items-center p-6 bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-lg dark:shadow-none overflow-hidden">
 
     <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center">
         🌤️ Météo du jour

@@ -6,13 +6,17 @@ use App\Models\User;
 use Illuminate\View\View;
 use Livewire\Component;
 
-class DeleteUser extends Component
+class Delete extends Component
 {
     public User $user;
 
-    public function mount(int $id): void
+    /**
+     * @param User $user
+     * @return void
+     */
+    public function mount(User $user): void
     {
-        $this->user = User::find($id);
+        $this->user = $user;
     }
 
     /**
@@ -29,6 +33,6 @@ class DeleteUser extends Component
 
     public function render(): View
     {
-        return view('livewire.users.delete-user');
+        return view('livewire.users.delete');
     }
 }

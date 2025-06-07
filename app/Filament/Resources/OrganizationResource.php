@@ -88,12 +88,12 @@ class OrganizationResource extends Resource
                     ->label('Logo')
                     ->placeholder('Sélectionner une photo')
                     ->image()
-                    ->disk('minio')
+                    ->disk('s3')
                     ->directory('organization_logo')
                     ->visibility('private')
                     ->deleteUploadedFileUsing(function ($file, $record) {
                         if ($record && $record->logo) {
-                            Storage::disk('minio')->delete($record->logo);
+                            Storage::disk('s3')->delete($record->logo);
                         }
                     }),
 
@@ -138,7 +138,7 @@ class OrganizationResource extends Resource
 
                 ImageColumn::make('logo_url')
                     ->label('Logo')
-                    ->disk('minio')
+                    ->disk('s3')
                     ->sortable(),
             ])
             ->filters([
