@@ -24,6 +24,9 @@
             <flux:navlist.item icon="newspaper" :href="route('actualities.index')"
                                :current="request()->routeIs('actualities.*')"
                                wire:navigate>{{ __('Actualités') }}</flux:navlist.item>
+            <flux:navlist.item icon="calendar" :href="route('events.index')"
+                               :current="request()->routeIs('events.*')"
+                               wire:navigate>{{ __('Événements') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>
 

@@ -5,9 +5,12 @@
             <flux:breadcrumbs.item>Annuaire des utilisateurs</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
-        <div class="bg-blue-50 border-t border-b border-blue-300 text-blue-600 px-4 py-3 rounded rounded-lg dark:bg-blue-900 dark:text-blue-100 dark:border-blue-700">
-            <p class="font-bold">Utilisateurs 🙋</p>
-            <p class="text-sm">
+        <div class="bg-gradient-to-r from-indigo-50 to-slate-50 border border-indigo-100 text-slate-700 px-6 py-4 rounded-xl shadow-sm dark:bg-indigo-900/20 dark:text-indigo-100 dark:border-indigo-800/30">
+            <div class="flex items-center gap-3 mb-1">
+                <span class="text-xl">🙋</span>
+                <h2 class="font-semibold text-lg text-slate-800 dark:text-white">Utilisateurs</h2>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 ml-9">
                 Retrouvez la liste de tous les utilisateurs de votre organisation. Vous pouvez en ajouter, les modifier ou les supprimer !
             </p>
         </div>

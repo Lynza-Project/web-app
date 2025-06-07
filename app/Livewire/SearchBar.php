@@ -8,17 +8,14 @@ use Livewire\Component;
 class SearchBar extends Component
 {
     public string $model;
-    public string $width;
 
     /**
      * @param string $model
-     * @param string $width
      * @return void
      */
-    public function mount(string $model, string $width): void
+    public function mount(string $model): void
     {
         $this->model = $model;
-        $this->width = $width;
     }
 
     /**
@@ -34,8 +31,6 @@ class SearchBar extends Component
      */
     public function updated(): void
     {
-        // The searchUpdated event is now dispatched directly from the blade template
-        // with the actual search value
     }
 
 }
