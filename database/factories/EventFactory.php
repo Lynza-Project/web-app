@@ -15,10 +15,10 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word(),
-            'description' => $this->faker->text(),
+            'title' => fake()->word(),
+            'description' => fake()->text(),
             'date' => Carbon::now(),
-            'location' => $this->faker->word(),
+            'location' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

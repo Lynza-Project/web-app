@@ -15,9 +15,9 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         return [
-            'subject' => $this->faker->word(),
-            'description' => $this->faker->text(),
-            'status' => $this->faker->randomElement(['open', 'closed']),
+            'subject' => fake()->word(),
+            'description' => fake()->text(),
+            'status' => fake()->randomElement(['open', 'closed']),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

@@ -15,8 +15,8 @@ class DocumentationFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word(),
-            'content' => $this->faker->word(),
+            'title' => fake()->word(),
+            'content' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

@@ -13,9 +13,9 @@ class OrganizationFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'type' => $this->faker->word(),
-            'logo' => $this->faker->word(),
+            'name' => fake()->name(),
+            'type' => fake()->word(),
+            'logo' => fake()->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
