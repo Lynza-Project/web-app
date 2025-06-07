@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
 {
@@ -44,8 +45,19 @@ class Event extends Model
         ];
     }
 
+    protected $appends = [
+        'image_url',
+    ];
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image
+            ? Storage::disk('s3')->temporaryUrl($this->image, now()->addMinutes(5))
+            : asset('img\university.jpg');
+    }
+
     /**
-     * Check if the event is a single day event
+     * Check if the event is a single-day event
      * @return bool
      */
     public function isSingleDayEvent(): bool

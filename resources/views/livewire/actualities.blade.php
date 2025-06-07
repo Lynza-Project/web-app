@@ -31,7 +31,7 @@
                                 <div class="flex space-x-2">
                                     <flux:tooltip content="Modifier">
                                         <a href="{{ route('actualities.edit', $actuality) }}"
-                                           class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 transition">
+                                           class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 transition">
                                             <x-heroicon-o-pencil class="w-5 h-5"/>
                                         </a>
                                     </flux:tooltip>

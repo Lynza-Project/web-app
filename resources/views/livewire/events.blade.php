@@ -11,7 +11,7 @@
                     class="flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
                     wire:key="event-{{ $event->id }}">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ $event->image ? Storage::disk('s3')->temporaryUrl($event->image, now()->addMinutes(5)) : asset('img\university.jpg') }}" alt="Image Événement"
+                        <img src="{{ $event->image_url }}" alt="Image Événement"
                              class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                         <div class="absolute bottom-3 left-4">
