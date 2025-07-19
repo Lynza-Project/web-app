@@ -19,6 +19,10 @@ return new class extends Migration {
             $table->string('success');
             $table->string('warning');
             $table->string('font');
+            $table->string('background_color')->nullable();
+            $table->string('text_color')->nullable();
+            $table->string('button_color')->nullable();
+            $table->string('logo_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

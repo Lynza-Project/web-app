@@ -20,6 +20,9 @@
                 <flux:navlist.item icon="users" :href="route('users.index')"
                                    :current="request()->routeIs('users.index')"
                                    wire:navigate>{{ __('Annuaire des utilisateurs') }}</flux:navlist.item>
+                <flux:navlist.item icon="paint-brush" :href="route('themes.index')"
+                                   :current="request()->routeIs('themes.*')"
+                                   wire:navigate>{{ __('Thème') }}</flux:navlist.item>
             @endif
             <flux:navlist.item icon="newspaper" :href="route('actualities.index')"
                                :current="request()->routeIs('actualities.*')"
