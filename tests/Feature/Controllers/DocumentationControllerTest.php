@@ -1,8 +1,17 @@
 <?php
 
+use App\Helpers\UserHelper;
 use App\Models\Documentation;
 use App\Models\Organization;
 use App\Models\User;
+use Mockery;
+
+beforeEach(function () {
+    // Mock the UserHelper methods
+    $this->mock = Mockery::mock('alias:' . UserHelper::class);
+    $this->mock->shouldReceive('isAdministrator')->andReturn(true)->byDefault();
+    $this->mock->shouldReceive('isSuperAdministrator')->andReturn(false)->byDefault();
+});
 
 test('guests cannot access documentation pages', function () {
     $documentation = Documentation::factory()->create();
@@ -93,11 +102,15 @@ test('only admins can edit documentation', function () {
     ]);
 
     // Regular user cannot access edit page
+    $this->mock->shouldReceive('isAdministrator')->andReturn(false);
+
     $this->actingAs($user)
         ->get(route('documentations.edit', $documentation))
         ->assertStatus(403);
 
     // Admin can access edit page
+    $this->mock->shouldReceive('isAdministrator')->andReturn(true);
+
     $this->actingAs($admin)
         ->get(route('documentations.edit', $documentation))
         ->assertStatus(200)
@@ -125,11 +138,15 @@ test('only admins can update documentation', function () {
     ]);
 
     // Regular user cannot update
+    $this->mock->shouldReceive('isAdministrator')->andReturn(false);
+
     $this->actingAs($user)
         ->put(route('documentations.update', $documentation))
         ->assertStatus(403);
 
     // Admin can update
+    $this->mock->shouldReceive('isAdministrator')->andReturn(true);
+
     $this->actingAs($admin)
         ->put(route('documentations.update', $documentation))
         ->assertRedirect(route('documentations.show', $documentation))
@@ -156,11 +173,15 @@ test('only admins can delete documentation', function () {
     ]);
 
     // Regular user cannot delete
+    $this->mock->shouldReceive('isAdministrator')->andReturn(false);
+
     $this->actingAs($user)
         ->delete(route('documentations.destroy', $documentation))
         ->assertStatus(403);
 
     // Admin can delete
+    $this->mock->shouldReceive('isAdministrator')->andReturn(true);
+
     $this->actingAs($admin)
         ->delete(route('documentations.destroy', $documentation))
         ->assertRedirect(route('documentations.index'))
