@@ -14,7 +14,6 @@
         'warning' => 'amber-500',
         'font' => 'Inter',
         'background_color' => 'white',
-        'text_color' => 'gray-600',
         'button_color' => 'blue-500',
     ];
 
@@ -26,7 +25,6 @@
     $successHex = $theme ? Theme::getHexFromTailwindColor($theme->success) : Theme::getHexFromTailwindColor($defaults['success']);
     $warningHex = $theme ? Theme::getHexFromTailwindColor($theme->warning) : Theme::getHexFromTailwindColor($defaults['warning']);
     $backgroundHex = $theme && $theme->background_color ? Theme::getHexFromTailwindColor($theme->background_color) : '#ffffff';
-    $textHex = $theme && $theme->text_color ? Theme::getHexFromTailwindColor($theme->text_color) : '#18181b';
     $buttonHex = $theme && $theme->button_color ? Theme::getHexFromTailwindColor($theme->button_color) : $primaryHex;
 @endphp
 
@@ -40,7 +38,6 @@
         --warning: {{ $warningHex }};
         --font: "{{ $theme->font ?? $defaults['font'] }}", sans-serif;
         --background-color: {{ $backgroundHex }};
-        --text-color: {{ $textHex }};
         --button-color: {{ $buttonHex }};
 
         /* Override accent colors with theme primary color */
@@ -151,11 +148,7 @@
     }
     @endif
 
-    @if($theme && $theme->text_color)
-    body {
-        color: var(--text-color);
-    }
-    @endif
+    /* Text color is not overridden, using default */
 
     @if($theme && $theme->button_color)
     .btn-custom {
@@ -187,19 +180,19 @@
 
     /* Flux buttons and interactive elements */
     [data-flux-button] {
-        background-color: var(--color-accent) !important;
-        border-color: var(--color-accent) !important;
+        background-color: var(--button-color) !important;
+        border-color: var(--button-color) !important;
     }
 
     [data-flux-button]:hover {
-        background-color: var(--color-accent-content) !important;
-        border-color: var(--color-accent-content) !important;
+        background-color: var(--button-color) !important;
+        border-color: var(--button-color) !important;
     }
 
     /* Flux tabs, pills, and other navigation elements */
     [data-flux-tab][aria-selected="true"],
     [data-flux-pill][aria-selected="true"] {
-        background-color: var(--color-accent) !important;
+        background-color: var(--button-color) !important;
         color: var(--color-accent-foreground) !important;
     }
 
@@ -225,18 +218,18 @@
     }
 
     .dark [data-flux-button] {
-        background-color: var(--color-accent) !important;
-        border-color: var(--color-accent) !important;
+        background-color: var(--button-color) !important;
+        border-color: var(--button-color) !important;
     }
 
     .dark [data-flux-button]:hover {
-        background-color: var(--color-accent-content) !important;
-        border-color: var(--color-accent-content) !important;
+        background-color: var(--button-color) !important;
+        border-color: var(--button-color) !important;
     }
 
     .dark [data-flux-tab][aria-selected="true"],
     .dark [data-flux-pill][aria-selected="true"] {
-        background-color: var(--color-accent) !important;
+        background-color: var(--button-color) !important;
         color: var(--color-accent-foreground) !important;
     }
 </style>
