@@ -53,18 +53,10 @@
                                 <div class="space-y-6">
                                     <h3 class="text-lg font-medium text-zinc-900 dark:text-white">{{ $theme->title }}</h3>
 
-                                    <div class="grid grid-cols-3 gap-4">
+                                    <div class="flex justify-center">
                                         <div class="flex flex-col items-center">
                                             <div class="h-12 w-12 rounded-full bg-{{ $theme->primary }}"></div>
                                             <span class="mt-1 text-sm">Primary</span>
-                                        </div>
-                                        <div class="flex flex-col items-center">
-                                            <div class="h-12 w-12 rounded-full bg-{{ $theme->danger }}"></div>
-                                            <span class="mt-1 text-sm">Danger</span>
-                                        </div>
-                                        <div class="flex flex-col items-center">
-                                            <div class="h-12 w-12 rounded-full bg-{{ $theme->success }}"></div>
-                                            <span class="mt-1 text-sm">Success</span>
                                         </div>
                                     </div>
 

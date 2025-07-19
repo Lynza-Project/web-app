@@ -15,14 +15,8 @@ class Theme extends Model
         'organization_id',
         'title',
         'primary',
-        'danger',
-        'gray',
-        'info',
-        'success',
-        'warning',
         'font',
         'background_color',
-        'text_color',
         'button_color',
         'logo_path',
     ];
@@ -109,7 +103,9 @@ class Theme extends Model
     // Get available color names for dropdowns
     public static function getColorOptions(): array
     {
-        $colors = [];
+        $colors = [
+            'white' => 'White', // Add white as a special option
+        ];
         foreach (self::getTailwindColors() as $colorName => $shades) {
             foreach ($shades as $shade => $hex) {
                 $colors["$colorName-$shade"] = ucfirst($colorName) . " $shade";
@@ -123,6 +119,11 @@ class Theme extends Model
     {
         if (empty($colorName)) {
             return '';
+        }
+
+        // Handle special case for white
+        if ($colorName === 'white') {
+            return '#ffffff';
         }
 
         [$color, $shade] = explode('-', $colorName);
