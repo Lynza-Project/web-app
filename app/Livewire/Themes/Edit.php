@@ -17,10 +17,15 @@ class Edit extends Component
     public string $font = '';
     public string $background_color = '';
     public string $button_color = '';
-    public $logo_path;
-    public $newLogo;
+    public ?string $logo_path = null;
+    public $newLogo = null;
 
-    protected function rules()
+    /**
+     * Get the validation rules for theme editing
+     *
+     * @return array<string, string>
+     */
+    protected function rules(): array
     {
         return [
             'title' => 'required',
@@ -41,6 +46,12 @@ class Edit extends Component
         'newLogo' => 'logo',
     ];
 
+    /**
+     * Initialize the component with theme data
+     *
+     * @param Theme $theme The theme to edit
+     * @return void
+     */
     public function mount(Theme $theme): void
     {
         $this->theme = $theme;
@@ -52,6 +63,11 @@ class Edit extends Component
         $this->logo_path = $theme->logo_path;
     }
 
+    /**
+     * Update the theme with new values
+     *
+     * @return void
+     */
     public function updateTheme(): void
     {
         $this->validate();
@@ -77,6 +93,11 @@ class Edit extends Component
         redirect()->route('themes.index');
     }
 
+    /**
+     * Render the theme edit form
+     *
+     * @return View
+     */
     public function render(): View
     {
         return view('livewire.themes.edit');

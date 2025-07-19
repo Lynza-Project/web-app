@@ -16,7 +16,7 @@ class Create extends Component
     public string $font = '';
     public string $background_color = '';
     public string $button_color = '';
-    public $logo;
+    public $logo = null;
 
     protected $rules = [
         'title' => 'required',
@@ -36,6 +36,11 @@ class Create extends Component
         'logo' => 'logo',
     ];
 
+    /**
+     * Create a new theme for the organization
+     *
+     * @return void
+     */
     public function createTheme(): void
     {
         $this->validate();
@@ -65,6 +70,11 @@ class Create extends Component
         $this->dispatch('themeCreated');
     }
 
+    /**
+     * Render the theme creation form
+     *
+     * @return View
+     */
     public function render(): View
     {
         return view('livewire.themes.create');

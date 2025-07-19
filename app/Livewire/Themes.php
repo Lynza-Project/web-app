@@ -12,9 +12,9 @@ class Themes extends Component
 {
     use WithPagination;
 
-    public $search = '';
-    public $sortField = 'created_at';
-    public $sortDirection = 'desc';
+    public string $search = '';
+    public string $sortField = 'created_at';
+    public string $sortDirection = 'desc';
     public bool $canManage = false;
 
     public function mount(): void
@@ -23,7 +23,9 @@ class Themes extends Component
     }
 
     /**
-     * @param string $field
+     * Sort themes by the specified field
+     *
+     * @param string $field The field to sort by
      * @return void
      */
     public function sortBy(string $field): void
@@ -37,7 +39,9 @@ class Themes extends Component
     }
 
     /**
-     * @return View
+     * Render the themes component
+     *
+     * @return View The view with themes data
      */
     public function render(): View
     {
@@ -55,8 +59,14 @@ class Themes extends Component
         return view('livewire.themes', compact('themes', 'theme'));
     }
 
-    /*** Useful functions ***/
+    // Event handlers and search functionality
 
+    /**
+     * Handle search updates from external components
+     *
+     * @param mixed $search The search term
+     * @return void
+     */
     #[On('searchUpdated')]
     public function searchUpdated($search): void
     {
@@ -65,6 +75,8 @@ class Themes extends Component
     }
 
     /**
+     * Reset pagination when search term is updated
+     *
      * @return void
      */
     public function updatingSearch(): void
@@ -72,18 +84,33 @@ class Themes extends Component
         $this->resetPage();
     }
 
+    /**
+     * Handle theme creation event
+     *
+     * @return void
+     */
     #[On('themeCreated')]
     public function themeCreated(): void
     {
         $this->dispatch('refresh');
     }
 
+    /**
+     * Handle theme edit event
+     *
+     * @return void
+     */
     #[On('themeEdited')]
     public function themeEdited(): void
     {
         $this->dispatch('refresh');
     }
 
+    /**
+     * Handle theme deletion event
+     *
+     * @return void
+     */
     #[On('themeDeleted')]
     public function themeDeleted(): void
     {

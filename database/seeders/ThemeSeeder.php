@@ -8,6 +8,11 @@ use Illuminate\Database\Seeder;
 
 class ThemeSeeder extends Seeder
 {
+    /**
+     * Seed the themes table with default themes for each organization
+     *
+     * @return void
+     */
     public function run(): void
     {
         $organizations = Organization::all();

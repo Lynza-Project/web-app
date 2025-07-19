@@ -21,7 +21,11 @@ class Theme extends Model
         'logo_path',
     ];
 
-    // Tailwind color mapping
+    /**
+     * Get the mapping of Tailwind color names to their hex values
+     *
+     * @return array<string, array<string, string>> Array of color names and their shade hex values
+     */
     public static function getTailwindColors(): array
     {
         return [
@@ -100,11 +104,15 @@ class Theme extends Model
         ];
     }
 
-    // Get available color names for dropdowns
+    /**
+     * Get available color options for dropdown menus
+     *
+     * @return array<string, string> Array of color keys and their display names
+     */
     public static function getColorOptions(): array
     {
         $colors = [
-            'white' => 'White', // Add white as a special option
+            'white' => 'White',
         ];
         foreach (self::getTailwindColors() as $colorName => $shades) {
             foreach ($shades as $shade => $hex) {
@@ -114,7 +122,12 @@ class Theme extends Model
         return $colors;
     }
 
-    // Get hex value for a Tailwind color
+    /**
+     * Convert a Tailwind color name to its hex value
+     *
+     * @param string $colorName The Tailwind color name (e.g., 'blue-500', 'white')
+     * @return string The hex color value
+     */
     public static function getHexFromTailwindColor(string $colorName): string
     {
         if (empty($colorName)) {
@@ -130,6 +143,11 @@ class Theme extends Model
         return self::getTailwindColors()[$color][$shade] ?? '#000000';
     }
 
+    /**
+     * Get the organization that owns this theme
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);

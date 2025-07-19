@@ -6,6 +6,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
+    /**
+     * Run the migrations to create the themes table
+     *
+     * @return void
+     */
     public function up(): void
     {
         Schema::create('themes', static function (Blueprint $table) {
@@ -22,6 +27,11 @@ return new class extends Migration {
         });
     }
 
+    /**
+     * Reverse the migrations by dropping the themes table
+     *
+     * @return void
+     */
     public function down(): void
     {
         Schema::dropIfExists('themes');
