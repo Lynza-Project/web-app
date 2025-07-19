@@ -1,11 +1,20 @@
 <?php
 
+use App\Helpers\UserHelper;
 use App\Livewire\Settings\Profile;
 use App\Models\User;
 use Livewire\Livewire;
 use Livewire\Volt\Volt;
+use Mockery;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+
+beforeEach(function () {
+    // Mock the UserHelper methods
+    $this->mock = Mockery::mock('alias:' . UserHelper::class);
+    $this->mock->shouldReceive('isAdministrator')->andReturn(true)->byDefault();
+    $this->mock->shouldReceive('isSuperAdministrator')->andReturn(false)->byDefault();
+});
 
 test('profile page is displayed', function () {
     $this->actingAs($user = User::factory()->create());
