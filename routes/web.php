@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(static function () {
     Route::get('events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
     Route::put('events/{event}', [EventController::class, 'update'])->name('events.update');
     Route::delete('events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
-  
+
     Route::get('documentations', [DocumentationController::class, 'index'])->name('documentations.index');
     Route::get('documentations/{documentation}', [DocumentationController::class, 'show'])->name('documentations.show');
     Route::get('documentations/{documentation}/edit', [DocumentationController::class, 'edit'])->name('documentations.edit');
@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+
+    // Theme management routes
+    Route::get('themes', App\Livewire\Themes::class)->name('themes.index');
 });
 
 require __DIR__.'/auth.php';

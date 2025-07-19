@@ -1,0 +1,105 @@
+<?php
+
+namespace App\Livewire\Themes;
+
+use App\Models\Theme;
+use Illuminate\View\View;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+
+class Edit extends Component
+{
+    use WithFileUploads;
+
+    public Theme $theme;
+    public string $title = '';
+    public string $primary = '';
+    public string $font = '';
+    public string $background_color = '';
+    public string $button_color = '';
+    public ?string $logo_path = null;
+    public $newLogo = null;
+
+    /**
+     * Get the validation rules for theme editing
+     *
+     * @return array<string, string>
+     */
+    protected function rules(): array
+    {
+        return [
+            'title' => 'required',
+            'primary' => 'required',
+            'font' => 'required',
+            'background_color' => 'nullable',
+            'button_color' => 'nullable',
+            'newLogo' => 'nullable|image|max:1024',
+        ];
+    }
+
+    protected $validationAttributes = [
+        'title' => 'titre',
+        'primary' => 'couleur primaire',
+        'font' => 'police',
+        'background_color' => 'couleur de fond',
+        'button_color' => 'couleur de bouton',
+        'newLogo' => 'logo',
+    ];
+
+    /**
+     * Initialize the component with theme data
+     *
+     * @param Theme $theme The theme to edit
+     * @return void
+     */
+    public function mount(Theme $theme): void
+    {
+        $this->theme = $theme;
+        $this->title = $theme->title;
+        $this->primary = $theme->primary;
+        $this->font = $theme->font;
+        $this->background_color = $theme->background_color ?? '';
+        $this->button_color = $theme->button_color ?? '';
+        $this->logo_path = $theme->logo_path;
+    }
+
+    /**
+     * Update the theme with new values
+     *
+     * @return void
+     */
+    public function updateTheme(): void
+    {
+        $this->validate();
+
+        $data = [
+            'title' => $this->title,
+            'primary' => $this->primary,
+            'font' => $this->font,
+            'background_color' => $this->background_color,
+            'button_color' => $this->button_color,
+        ];
+
+        if ($this->newLogo) {
+            $data['logo_path'] = $this->newLogo->store('themes/' . auth()->user()->organization_id . '/logos', 's3');
+        }
+
+        $this->theme->update($data);
+
+        session()->flash('success', 'Thème mis à jour avec succès.');
+
+        $this->dispatch('themeEdited');
+
+        redirect()->route('themes.index');
+    }
+
+    /**
+     * Render the theme edit form
+     *
+     * @return View
+     */
+    public function render(): View
+    {
+        return view('livewire.themes.edit');
+    }
+}

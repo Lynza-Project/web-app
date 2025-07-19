@@ -9,7 +9,7 @@ class ThemeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'organization_id' => ['required', 'exists:organizations'],
+            'organization_id' => ['required', 'exists:organizations,id'],
             'title' => ['required'],
             'primary' => ['required'],
             'danger' => ['required'],
@@ -18,6 +18,10 @@ class ThemeRequest extends FormRequest
             'success' => ['required'],
             'warning' => ['required'],
             'font' => ['required'],
+            'background_color' => ['nullable', 'string'],
+            'text_color' => ['nullable', 'string'],
+            'button_color' => ['nullable', 'string'],
+            'logo_path' => ['nullable', 'string'],
         ];
     }
 
