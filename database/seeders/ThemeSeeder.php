@@ -12,26 +12,35 @@ class ThemeSeeder extends Seeder
     {
         $organizations = Organization::all();
 
-        $randomColors = [
-            '#3490dc',
-            '#e3342f',
-            '#6c757d',
-            '#6cb2eb',
-            '#38c172',
-            '#ffed4a',
+        $tailwindColors = [
+            'blue-500',
+            'red-500',
+            'gray-500',
+            'sky-400',
+            'green-500',
+            'yellow-400',
+            'indigo-600',
+            'purple-500',
+            'pink-500',
+            'emerald-500',
+            'amber-500',
+            'teal-500',
         ];
 
         foreach ($organizations as $org) {
             Theme::create([
                 'organization_id' => $org->id,
                 'title' => 'Thème ' . $org->name,
-                'primary' => $randomColors[array_rand($randomColors)],
-                'danger' => $randomColors[array_rand($randomColors)],
-                'gray' => $randomColors[array_rand($randomColors)],
-                'info' => $randomColors[array_rand($randomColors)],
-                'success' => $randomColors[array_rand($randomColors)],
-                'warning' => $randomColors[array_rand($randomColors)],
+                'primary' => $tailwindColors[array_rand($tailwindColors)],
+                'danger' => $tailwindColors[array_rand($tailwindColors)],
+                'gray' => $tailwindColors[array_rand($tailwindColors)],
+                'info' => $tailwindColors[array_rand($tailwindColors)],
+                'success' => $tailwindColors[array_rand($tailwindColors)],
+                'warning' => $tailwindColors[array_rand($tailwindColors)],
                 'font' => 'Arial',
+                'background_color' => $tailwindColors[array_rand($tailwindColors)],
+                'text_color' => $tailwindColors[array_rand($tailwindColors)],
+                'button_color' => $tailwindColors[array_rand($tailwindColors)],
             ]);
         }
     }

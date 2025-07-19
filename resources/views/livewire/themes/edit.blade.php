@@ -11,23 +11,29 @@
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                     <flux:label for="primary">{{ __('Couleur primaire') }}</flux:label>
-                    <flux:select id="primary" wire:model="primary" required>
+                    <flux:select id="primary" wire:model.live="primary" required>
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($primary)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $primary }}"></div>
+                    @endif
                     @error('primary') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
                     <flux:label for="danger">{{ __('Couleur danger') }}</flux:label>
-                    <flux:select id="danger" wire:model="danger" required>
+                    <flux:select id="danger" wire:model.live="danger" required>
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($danger)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $danger }}"></div>
+                    @endif
                     @error('danger') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -35,23 +41,29 @@
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                     <flux:label for="gray">{{ __('Couleur grise') }}</flux:label>
-                    <flux:select id="gray" wire:model="gray" required>
+                    <flux:select id="gray" wire:model.live="gray" required>
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($gray)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $gray }}"></div>
+                    @endif
                     @error('gray') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
                     <flux:label for="info">{{ __('Couleur info') }}</flux:label>
-                    <flux:select id="info" wire:model="info" required>
+                    <flux:select id="info" wire:model.live="info" required>
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($info)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $info }}"></div>
+                    @endif
                     @error('info') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -59,23 +71,29 @@
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                     <flux:label for="success">{{ __('Couleur succès') }}</flux:label>
-                    <flux:select id="success" wire:model="success" required>
+                    <flux:select id="success" wire:model.live="success" required>
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($success)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $success }}"></div>
+                    @endif
                     @error('success') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
                     <flux:label for="warning">{{ __('Couleur avertissement') }}</flux:label>
-                    <flux:select id="warning" wire:model="warning" required>
+                    <flux:select id="warning" wire:model.live="warning" required>
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($warning)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $warning }}"></div>
+                    @endif
                     @error('warning') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -96,34 +114,43 @@
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div>
                     <flux:label for="background_color">{{ __('Couleur de fond') }}</flux:label>
-                    <flux:select id="background_color" wire:model="background_color">
+                    <flux:select id="background_color" wire:model.live="background_color">
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($background_color)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $background_color }}"></div>
+                    @endif
                     @error('background_color') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
                     <flux:label for="text_color">{{ __('Couleur de texte') }}</flux:label>
-                    <flux:select id="text_color" wire:model="text_color">
+                    <flux:select id="text_color" wire:model.live="text_color">
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($text_color)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $text_color }}"></div>
+                    @endif
                     @error('text_color') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div>
                     <flux:label for="button_color">{{ __('Couleur de bouton') }}</flux:label>
-                    <flux:select id="button_color" wire:model="button_color">
+                    <flux:select id="button_color" wire:model.live="button_color">
                         <option value="">{{ __('Sélectionner une couleur') }}</option>
                         @foreach(\App\Models\Theme::getColorOptions() as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </flux:select>
+                    @if($button_color)
+                        <div class="mt-2 h-6 w-6 rounded border border-gray-300 bg-{{ $button_color }}"></div>
+                    @endif
                     @error('button_color') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>

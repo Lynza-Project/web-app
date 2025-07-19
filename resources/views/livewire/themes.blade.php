@@ -55,15 +55,15 @@
 
                                     <div class="grid grid-cols-3 gap-4">
                                         <div class="flex flex-col items-center">
-                                            <div class="h-12 w-12 rounded-full" style="background-color: {{ $theme->primary }}"></div>
+                                            <div class="h-12 w-12 rounded-full bg-{{ $theme->primary }}"></div>
                                             <span class="mt-1 text-sm">Primary</span>
                                         </div>
                                         <div class="flex flex-col items-center">
-                                            <div class="h-12 w-12 rounded-full" style="background-color: {{ $theme->danger }}"></div>
+                                            <div class="h-12 w-12 rounded-full bg-{{ $theme->danger }}"></div>
                                             <span class="mt-1 text-sm">Danger</span>
                                         </div>
                                         <div class="flex flex-col items-center">
-                                            <div class="h-12 w-12 rounded-full" style="background-color: {{ $theme->success }}"></div>
+                                            <div class="h-12 w-12 rounded-full bg-{{ $theme->success }}"></div>
                                             <span class="mt-1 text-sm">Success</span>
                                         </div>
                                     </div>
