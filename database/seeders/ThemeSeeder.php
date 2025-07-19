@@ -16,15 +16,12 @@ class ThemeSeeder extends Seeder
             'blue-500',
             'red-500',
             'gray-500',
-            'sky-400',
             'green-500',
-            'yellow-400',
-            'indigo-600',
+            'indigo-500',
             'purple-500',
             'pink-500',
             'emerald-500',
             'amber-500',
-            'teal-500',
         ];
 
         foreach ($organizations as $org) {

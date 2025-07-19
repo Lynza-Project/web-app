@@ -14,7 +14,7 @@
         'warning' => 'amber-500',
         'font' => 'Inter',
         'background_color' => 'white',
-        'text_color' => 'zinc-900',
+        'text_color' => 'gray-600',
         'button_color' => 'blue-500',
     ];
 
@@ -44,9 +44,28 @@
         --button-color: {{ $buttonHex }};
 
         /* Override accent colors with theme primary color */
-        --color-accent: {{ $primaryHex }};
-        --color-accent-content: {{ $primaryHex }};
-        --color-accent-foreground: #ffffff;
+        --color-accent: {{ $primaryHex }} !important;
+        --color-accent-content: {{ $theme ? Theme::getHexFromTailwindColor(str_replace('500', '600', $theme->primary)) : Theme::getHexFromTailwindColor(str_replace('500', '600', $defaults['primary'])) }} !important;
+        --color-accent-foreground: var(--color-white) !important;
+
+        /* Override Tailwind color variables directly */
+        --color-blue-500: {{ $primaryHex }} !important;
+        --color-blue-600: {{ $theme ? Theme::getHexFromTailwindColor(str_replace('500', '600', $theme->primary)) : Theme::getHexFromTailwindColor(str_replace('500', '600', $defaults['primary'])) }} !important;
+        --color-blue-400: {{ $theme ? Theme::getHexFromTailwindColor(str_replace('500', '400', $theme->primary)) : Theme::getHexFromTailwindColor(str_replace('500', '400', $defaults['primary'])) }} !important;
+    }
+
+    @layer theme {
+        --color-primary: {{ $primaryHex }} !important;
+
+        .dark {
+            --color-accent: {{ $primaryHex }} !important;
+            --color-accent-content: {{ $theme ? Theme::getHexFromTailwindColor(str_replace('500', '400', $theme->primary)) : Theme::getHexFromTailwindColor(str_replace('500', '400', $defaults['primary'])) }} !important;
+            --color-accent-foreground: var(--color-white) !important;
+
+            /* Override Tailwind color variables directly */
+            --color-blue-500: {{ $primaryHex }} !important;
+            --color-blue-400: {{ $theme ? Theme::getHexFromTailwindColor(str_replace('500', '400', $theme->primary)) : Theme::getHexFromTailwindColor(str_replace('500', '400', $defaults['primary'])) }} !important;
+        }
     }
 
     body {
@@ -144,4 +163,80 @@
         border-color: var(--button-color);
     }
     @endif
+
+    /* Flux-specific styles to ensure they use our custom accent colors */
+    [data-flux-control]:focus {
+        --tw-ring-color: var(--color-accent) !important;
+    }
+
+    .ring-accent {
+        --tw-ring-color: var(--color-accent) !important;
+    }
+
+    .bg-accent {
+        background-color: var(--color-accent) !important;
+    }
+
+    .text-accent {
+        color: var(--color-accent) !important;
+    }
+
+    .border-accent {
+        border-color: var(--color-accent) !important;
+    }
+
+    /* Flux buttons and interactive elements */
+    [data-flux-button] {
+        background-color: var(--color-accent) !important;
+        border-color: var(--color-accent) !important;
+    }
+
+    [data-flux-button]:hover {
+        background-color: var(--color-accent-content) !important;
+        border-color: var(--color-accent-content) !important;
+    }
+
+    /* Flux tabs, pills, and other navigation elements */
+    [data-flux-tab][aria-selected="true"],
+    [data-flux-pill][aria-selected="true"] {
+        background-color: var(--color-accent) !important;
+        color: var(--color-accent-foreground) !important;
+    }
+
+    /* Dark mode styles */
+    .dark [data-flux-control]:focus {
+        --tw-ring-color: var(--color-accent) !important;
+    }
+
+    .dark .ring-accent {
+        --tw-ring-color: var(--color-accent) !important;
+    }
+
+    .dark .bg-accent {
+        background-color: var(--color-accent) !important;
+    }
+
+    .dark .text-accent {
+        color: var(--color-accent) !important;
+    }
+
+    .dark .border-accent {
+        border-color: var(--color-accent) !important;
+    }
+
+    .dark [data-flux-button] {
+        background-color: var(--color-accent) !important;
+        border-color: var(--color-accent) !important;
+    }
+
+    .dark [data-flux-button]:hover {
+        background-color: var(--color-accent-content) !important;
+        border-color: var(--color-accent-content) !important;
+    }
+
+    .dark [data-flux-tab][aria-selected="true"],
+    .dark [data-flux-pill][aria-selected="true"] {
+        background-color: var(--color-accent) !important;
+        color: var(--color-accent-foreground) !important;
+    }
 </style>
