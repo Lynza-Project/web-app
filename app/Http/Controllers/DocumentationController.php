@@ -28,6 +28,14 @@ class DocumentationController extends Controller
     }
 
     /**
+     * @return View
+     */
+    public function create(): View
+    {
+        return view('documentations.create');
+    }
+
+    /**
      * @param Documentation $documentation
      * @return View
      */

@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="mt-6 text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
-                        {!! nl2br(e($event->description)) !!}
+                        {!! $event->description!!}
                     </div>
                 </div>
             </div>

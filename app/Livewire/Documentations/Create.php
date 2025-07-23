@@ -27,7 +27,7 @@ class Create extends Component
         'image' => 'image',
     ];
 
-    public function createDocumentation(): void
+    public function createDocumentation()
     {
         $this->validate();
 
@@ -44,13 +44,13 @@ class Create extends Component
             $data['image'] = null;
         }
 
-        Documentation::create($data);
+        $documentation = Documentation::create($data);
 
         $this->reset(['title', 'content', 'image']);
 
-        $this->modal('create-documentation')->close();
-
         $this->dispatch('documentationCreated');
+
+        return redirect()->route('documentations.index')->with('success', 'Documentation créée avec succès.');
     }
 
     public function render(): View

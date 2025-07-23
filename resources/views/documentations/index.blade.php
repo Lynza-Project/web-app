@@ -21,7 +21,10 @@
 
         @if(UserHelper::isAdministrator())
             <div class="w-fit">
-                @livewire('documentations.create')
+                <a href="{{ route('documentations.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition shadow-sm">
+                    <x-heroicon-o-plus class="w-4 h-4 mr-2"/>
+                    Créer une documentation
+                </a>
             </div>
         @endif
 

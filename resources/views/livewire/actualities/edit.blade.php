@@ -7,7 +7,8 @@
 
         <flux:input label="Titre" placeholder="Titre de l'actualité" wire:model.defer="title"/>
 
-        <flux:textarea label="Contenu" placeholder="Contenu de l'actualité" wire:model.defer="content" rows="10" />
+        <livewire:jodit-text-editor wire:model.live="content" />
+
 
         <flux:input type="file" label="Image (optionnelle)" wire:model="newImage" />
 
