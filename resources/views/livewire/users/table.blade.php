@@ -4,8 +4,7 @@
         @livewire('search-bar', ['model' => 'search'], key('search-bar'))
     </div>
 
-    <div class="relative overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700"
-         wire:listener="refreshPlantsTable">
+    <div class="relative overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700">
         <table class="w-full text-sm text-left text-slate-600 dark:text-slate-300">
             <thead class="text-xs uppercase bg-slate-50 dark:bg-slate-800 dark:text-slate-200">
             <tr class="text-left border-b border-slate-200 dark:border-slate-700">

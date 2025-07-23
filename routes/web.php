@@ -15,6 +15,7 @@ Route::get('/', static function () {
 
 Route::middleware(['auth', 'verified'])->group(static function () {
     Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/import', App\Livewire\Users\ImportPage::class)->name('users.import');
 
     Route::get('actualities', [ActualityController::class, 'index'])->name('actualities.index');
     Route::get('actualities/{actuality}', [ActualityController::class, 'show'])->name('actualities.show');

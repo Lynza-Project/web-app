@@ -19,7 +19,7 @@
                                wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
             @if(UserHelper::isAdministrator())
                 <flux:navlist.item icon="users" :href="route('users.index')"
-                                   :current="request()->routeIs('users.index')"
+                                   :current="request()->routeIs('users.*')"
                                    wire:navigate>{{ __('Gestion Utilisateur') }}</flux:navlist.item>
                 <flux:navlist.item icon="paint-brush" :href="route('themes.index')"
                                    :current="request()->routeIs('themes.*')"
