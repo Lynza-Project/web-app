@@ -3,6 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 <head>
     @include('partials.head')
+    <x-theme-styles />
 </head>
 <body class="min-h-screen bg-white dark:bg-zinc-800">
 <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
@@ -15,11 +16,14 @@
     <flux:navlist variant="outline">
         <flux:navlist.group heading="Espaces" class="grid">
             <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
-                               wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                               wire:navigate>{{ __('Accueil') }}</flux:navlist.item>
             @if(UserHelper::isAdministrator())
                 <flux:navlist.item icon="users" :href="route('users.index')"
-                                   :current="request()->routeIs('users.index')"
-                                   wire:navigate>{{ __('Annuaire des utilisateurs') }}</flux:navlist.item>
+                                   :current="request()->routeIs('users.*')"
+                                   wire:navigate>{{ __('Gestion Utilisateur') }}</flux:navlist.item>
+                <flux:navlist.item icon="paint-brush" :href="route('themes.index')"
+                                   :current="request()->routeIs('themes.*')"
+                                   wire:navigate>{{ __('Thème') }}</flux:navlist.item>
             @endif
             <flux:navlist.item icon="newspaper" :href="route('actualities.index')"
                                :current="request()->routeIs('actualities.*')"
@@ -49,7 +53,7 @@
     <flux:dropdown position="bottom" align="start">
         <flux:profile
             :name="auth()->user()->first_name"
-            :avatar="auth()->user()->profile_picture"
+            :avatar="auth()->user()->profile_picture_url"
             icon-trailing="chevrons-up-down"
         />
 
@@ -59,7 +63,7 @@
                     <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                    <img src="{{ auth()->user()->profile_picture }}" alt="P"
+                                    <img src="{{ auth()->user()->profile_picture_url }}" alt="P"
                                          class="w-8 h-8 rounded-full mr-3">
                                 </span>
                                 </span>
@@ -99,7 +103,7 @@
 
     <flux:dropdown position="top" align="end">
         <flux:profile
-            :avatar="auth()->user()->profile_picture"
+            :avatar="auth()->user()->profile_picture_url"
             icon-trailing="chevron-down"
         />
 
@@ -108,7 +112,7 @@
                 <div class="p-0 text-sm font-normal">
                     <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                    <img src="{{ auth()->user()->profile_picture }}" alt="P"
+                                    <img src="{{ auth()->user()->profile_picture_url }}" alt="P"
                                          class="w-8 h-8 rounded-full mr-3">
                                 </span>
 

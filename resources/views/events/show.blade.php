@@ -5,7 +5,7 @@
 <x-layouts.app>
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <flux:breadcrumbs>
-            <flux:breadcrumbs.item href="{{ route('dashboard') }}">Dashboard</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item href="{{ route('dashboard') }}">Accueil</flux:breadcrumbs.item>
             <flux:breadcrumbs.item href="{{ route('events.index') }}">Événements</flux:breadcrumbs.item>
             <flux:breadcrumbs.item>{{ $event->title }}</flux:breadcrumbs.item>
         </flux:breadcrumbs>
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="mt-6 text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
-                        {!! nl2br(e($event->description)) !!}
+                        {!! $event->description!!}
                     </div>
                 </div>
             </div>

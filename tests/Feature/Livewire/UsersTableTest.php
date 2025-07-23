@@ -101,6 +101,8 @@ test('it can search users', function () {
     // Test search by name
     Livewire::test(Table::class)
         ->set('search', 'John')
+        ->assertSee('John')
+        ->assertDontSee('Jane')
         ->assertViewHas('users', function ($viewUsers) {
             return $viewUsers->count() === 1 &&
                 $viewUsers->first()->first_name === 'John';
@@ -109,6 +111,8 @@ test('it can search users', function () {
     // Test search by email
     Livewire::test(Table::class)
         ->set('search', 'jane@example')
+        ->assertSee('jane@example.com')
+        ->assertDontSee('john@example.com')
         ->assertViewHas('users', function ($viewUsers) {
             return $viewUsers->count() === 1 &&
                 $viewUsers->first()->email === 'jane@example.com';

@@ -40,7 +40,7 @@ class Create extends Component
         'location' => 'lieu',
     ];
 
-    public function createEvent(): void
+    public function createEvent()
     {
         $this->validate();
 
@@ -62,13 +62,13 @@ class Create extends Component
             $data['image'] = null;
         }
 
-        Event::create($data);
+        $event = Event::create($data);
 
         $this->reset(['title', 'description', 'start_date', 'end_date', 'start_time', 'end_time', 'location', 'image']);
 
-        self::modal('create-event')->close();
-
         $this->dispatch('eventCreated');
+
+        return redirect()->route('events.index')->with('success', 'Événement créé avec succès.');
     }
 
     public function render(): View

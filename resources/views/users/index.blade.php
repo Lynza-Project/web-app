@@ -1,7 +1,7 @@
 <x-layouts.app>
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <flux:breadcrumbs>
-            <flux:breadcrumbs.item href="{{ route('dashboard') }}">Dashboard</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item href="{{ route('dashboard') }}">Accueil</flux:breadcrumbs.item>
             <flux:breadcrumbs.item>Annuaire des utilisateurs</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
@@ -15,7 +15,16 @@
             </p>
         </div>
 
-        @livewire('users.create')
+        @if (session()->has('message'))
+            <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-4 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800/30">
+                <p>{{ session('message') }}</p>
+            </div>
+        @endif
+
+        <div class="flex justify-between items-center">
+            @livewire('users.create')
+            @livewire('users.import')
+        </div>
         @livewire('users.table')
     </div>
 </x-layouts.app>

@@ -18,6 +18,15 @@ class Organization extends Model
         'logo',
     ];
 
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::deleting(static function ($organization) {
+            $organization->addresses()->delete();
+        });
+    }
+
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
