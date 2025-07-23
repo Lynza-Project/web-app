@@ -4,9 +4,7 @@
 
         <div>
             <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Contenu</label>
-            <textarea id="content" rows="10" wire:model.defer="content"
-                class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                placeholder="Contenu de la documentation"></textarea>
+            <livewire:jodit-text-editor wire:model.live="content" />
             @error('content') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 

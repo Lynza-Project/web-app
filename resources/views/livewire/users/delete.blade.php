@@ -7,7 +7,7 @@
             <div class="p-6 space-y-6">
                 <div class="flex items-center space-x-3 text-red-600 dark:text-red-400">
                     <x-heroicon-o-exclamation-triangle class="w-10 h-10"/>
-                    <flux:heading size="lg">Supprimer l'actualité</flux:heading>
+                    <flux:heading size="lg">Supprimer l'utilisateur</flux:heading>
                 </div>
 
                 <div>

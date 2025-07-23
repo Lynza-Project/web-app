@@ -16,10 +16,10 @@
     <flux:navlist variant="outline">
         <flux:navlist.group heading="Espaces" class="grid">
             <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
-                               wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                               wire:navigate>{{ __('Accueil') }}</flux:navlist.item>
             @if(UserHelper::isAdministrator())
                 <flux:navlist.item icon="users" :href="route('users.index')"
-                                   :current="request()->routeIs('users.index')"
+                                   :current="request()->routeIs('users.*')"
                                    wire:navigate>{{ __('Gestion Utilisateur') }}</flux:navlist.item>
                 <flux:navlist.item icon="paint-brush" :href="route('themes.index')"
                                    :current="request()->routeIs('themes.*')"

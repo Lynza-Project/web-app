@@ -38,7 +38,7 @@
                         </div>
 
                         <p class="text-sm text-slate-600 dark:text-slate-400 mt-3 flex-1">
-                            {{ Str::limit($documentation->content, 100) }}
+                            {{ strip_tags(Str::limit($documentation->content, 100)) }}
                         </p>
 
                         <!-- Lien Voir les détails -->

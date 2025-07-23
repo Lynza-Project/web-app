@@ -25,7 +25,7 @@ class Create extends Component
         'content' => 'contenu',
     ];
 
-    public function createActuality(): void
+    public function createActuality()
     {
         $this->validate();
 
@@ -42,13 +42,13 @@ class Create extends Component
             $data['image'] = null;
         }
 
-        Actuality::create($data);
+        $actuality = Actuality::create($data);
 
         $this->reset(['title', 'content', 'image']);
 
-        self::modal('create-actuality')->close();
-
         $this->dispatch('actualityCreated');
+
+        return redirect()->route('actualities.index')->with('success', 'Actualité créée avec succès.');
     }
 
     public function render(): View
