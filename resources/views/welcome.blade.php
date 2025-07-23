@@ -46,10 +46,16 @@
                     <span> Dashboard</span>
                 </a>
             @else
-                <a href="{{ route('login') }}"
-                   class="hidden md:inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
-                    <span> Connexion</span>
-                </a>
+                <div class="hidden md:flex space-x-3">
+                    <a href="{{ route('register') }}"
+                       class="inline-flex items-center px-5 py-2 bg-white text-indigo-600 border border-indigo-200 rounded-lg shadow-sm hover:bg-indigo-50 transition font-medium">
+                        <span> S'inscrire</span>
+                    </a>
+                    <a href="{{ route('login') }}"
+                       class="inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
+                        <span> Connexion</span>
+                    </a>
+                </div>
             @endauth
 
             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
@@ -76,10 +82,16 @@
                     <span>📊 Dashboard</span>
                 </a>
             @else
-                <a href="{{ route('login') }}"
-                   class="inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
-                    <span>🔑 Connexion</span>
-                </a>
+                <div class="flex flex-col space-y-3">
+                    <a href="{{ route('register') }}"
+                       class="inline-flex items-center px-5 py-2 bg-white text-indigo-600 border border-indigo-200 rounded-lg shadow-sm hover:bg-indigo-50 transition font-medium">
+                        <span>✏️ S'inscrire</span>
+                    </a>
+                    <a href="{{ route('login') }}"
+                       class="inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
+                        <span>🔑 Connexion</span>
+                    </a>
+                </div>
             @endauth
         </div>
     </div>

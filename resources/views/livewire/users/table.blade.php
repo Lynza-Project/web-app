@@ -38,7 +38,7 @@
                     <td class="p-4">
                         <div class="flex items-center space-x-3">
                             <div class="h-10 w-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
-                                <img src="{{ $user->profile_picture }}" alt="{{ $user->first_name[0] }}" class="h-full w-full object-cover">
+                                <img src="{{ $user->profile_picture_url }}" alt="{{ $user->first_name[0] }}" class="h-full w-full object-cover">
                             </div>
                             <span class="font-medium text-slate-800 dark:text-white">{{ $user->first_name . ' ' . $user->last_name }}</span>
                         </div>
