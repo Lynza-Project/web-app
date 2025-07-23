@@ -4,8 +4,7 @@
         @livewire('search-bar', ['model' => 'search'], key('search-bar'))
     </div>
 
-    <div class="relative overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700"
-         wire:listener="refreshPlantsTable">
+    <div class="relative overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700">
         <table class="w-full text-sm text-left text-slate-600 dark:text-slate-300">
             <thead class="text-xs uppercase bg-slate-50 dark:bg-slate-800 dark:text-slate-200">
             <tr class="text-left border-b border-slate-200 dark:border-slate-700">
@@ -37,10 +36,13 @@
 
                     <td class="p-4">
                         <div class="flex items-center space-x-3">
-                            <div class="h-10 w-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
-                                <img src="{{ $user->profile_picture }}" alt="{{ $user->first_name[0] }}" class="h-full w-full object-cover">
+                            <div
+                                class="h-10 w-10 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
+                                <img src="{{ $user->profile_picture_url }}" alt="{{ $user->first_name[0] }}"
+                                     class="h-full w-full object-cover">
                             </div>
-                            <span class="font-medium text-slate-800 dark:text-white">{{ $user->first_name . ' ' . $user->last_name }}</span>
+                            <span
+                                class="font-medium text-slate-800 dark:text-white">{{ $user->first_name . ' ' . $user->last_name }}</span>
                         </div>
                     </td>
 
@@ -49,15 +51,19 @@
                     <td class="p-4">
                         @php
                             $statuses = [
-                                'super-admin' => 'bg-rose-100 text-rose-700 border border-rose-200 dark:bg-rose-900/30 dark:text-rose-300 dark:border-rose-800/30',
-                                'admin' => 'bg-purple-100 text-purple-700 border border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800/30',
-                                'user' => 'bg-indigo-100 text-indigo-700 border border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-800/30',
+                                'super-admin' => 'red',
+                                'admin' => 'pink',
+                                'user' => 'blue',
                             ];
-                            $role = $user->role;
+                            $roleName = match ($user->role) {
+                                'super-admin' => 'Super Admin',
+                                'admin' => 'Admin',
+                                default => 'Utilisateur',
+                            };
                         @endphp
-                        <span class="px-2.5 py-1 text-xs font-medium rounded-full whitespace-nowrap {{ $statuses[$role] }}">
-                                {{ $role }}
-                            </span>
+                        <flux:badge color="{{ $statuses[$user->role] }}">
+                            {{ $roleName }}
+                        </flux:badge>
                     </td>
                 </tr>
             @empty
@@ -76,8 +82,10 @@
                 <td colspan="5" class="py-12 text-center">
                     <div class="flex flex-col items-center justify-center space-y-3">
                         <div class="flex space-x-2">
-                            <div class="w-3 h-3 bg-indigo-600 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                            <div class="w-3 h-3 bg-indigo-600 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                            <div
+                                class="w-3 h-3 bg-indigo-600 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                            <div
+                                class="w-3 h-3 bg-indigo-600 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
                             <div class="w-3 h-3 bg-indigo-600 rounded-full animate-bounce"></div>
                         </div>
                         <span class="text-sm text-slate-500 dark:text-slate-400">Chargement des utilisateurs...</span>

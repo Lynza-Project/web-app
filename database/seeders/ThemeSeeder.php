@@ -8,30 +8,27 @@ use Illuminate\Database\Seeder;
 
 class ThemeSeeder extends Seeder
 {
+    /**
+     * Seed the themes table with default themes for each organization
+     *
+     * @return void
+     */
     public function run(): void
     {
         $organizations = Organization::all();
 
-        $randomColors = [
-            '#3490dc',
-            '#e3342f',
-            '#6c757d',
-            '#6cb2eb',
-            '#38c172',
-            '#ffed4a',
-        ];
+        // We'll use blue-500 as the default primary color for all themes
+        $defaultPrimary = 'blue-500';
 
+        // Create a blue theme for each organization
         foreach ($organizations as $org) {
             Theme::create([
                 'organization_id' => $org->id,
                 'title' => 'Thème ' . $org->name,
-                'primary' => $randomColors[array_rand($randomColors)],
-                'danger' => $randomColors[array_rand($randomColors)],
-                'gray' => $randomColors[array_rand($randomColors)],
-                'info' => $randomColors[array_rand($randomColors)],
-                'success' => $randomColors[array_rand($randomColors)],
-                'warning' => $randomColors[array_rand($randomColors)],
+                'primary' => $defaultPrimary,
                 'font' => 'Arial',
+                'background_color' => 'white',
+                'button_color' => $defaultPrimary,
             ]);
         }
     }

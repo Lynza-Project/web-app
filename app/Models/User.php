@@ -52,6 +52,10 @@ class User extends Authenticatable implements HasName, FilamentUser
         'profile_picture',
     ];
 
+    protected $appends = [
+        'profile_picture_url',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -73,6 +77,16 @@ class User extends Authenticatable implements HasName, FilamentUser
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the user's profile picture URL.
+     */
+    public function getProfilePictureUrlAttribute(): string
+    {
+        return $this->profile_picture
+            ? asset('storage/' . $this->profile_picture)
+            : asset('img/user-default.jpg');
     }
 
     /**

@@ -30,6 +30,14 @@ class ActualityController extends Controller
     }
 
     /**
+     * @return View
+     */
+    public function create(): View
+    {
+        return view('actualities.create');
+    }
+
+    /**
      * @param Actuality $actuality
      * @return View
      */
