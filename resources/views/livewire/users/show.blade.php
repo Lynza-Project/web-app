@@ -12,7 +12,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="p-6">
                     <div class="flex items-center space-x-4 mb-6">
-                        <img src="{{ $user->profile_picture }}" alt="Profile" class="w-16 h-16 rounded-full">
+                        <img src="{{ $user->profile_picture_url }}" alt="Profile" class="w-16 h-16 rounded-full">
                         <div>
                             <h3 class="text-xl font-bold text-gray-800">{{ $user->first_name . ' ' . $user->last_name }}</h3>
                             <p class="text-gray-600">{{ $user->email }}</p>

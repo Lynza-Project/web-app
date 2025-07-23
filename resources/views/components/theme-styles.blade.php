@@ -120,11 +120,48 @@
         color: white !important;
     }
 
-    [data-flux-tab][aria-selected="true"],
-    [data-flux-pill][aria-selected="true"],
-    .dark [data-flux-tab][aria-selected="true"],
-    .dark [data-flux-pill][aria-selected="true"] {
+
+    [data-flux-button]:hover, .dark [data-flux-button]:hover {
         background-color: var(--button-color) !important;
+        border-color: var(--button-color) !important;
         color: white !important;
     }
+
+    [data-flux-modal-close] button,
+    [data-flux-modal-close] [data-flux-button],
+    [data-flux-modal-close] button:hover,
+    [data-flux-modal-close] [data-flux-button]:hover,
+    [data-flux-modal-close] button:focus,
+    [data-flux-modal-close] [data-flux-button]:focus,
+    [data-flux-modal-close] button:active,
+    [data-flux-modal-close] [data-flux-button]:active,
+    .dark [data-flux-modal-close] button,
+    .dark [data-flux-modal-close] [data-flux-button],
+    .dark [data-flux-modal-close] button:hover,
+    .dark [data-flux-modal-close] [data-flux-button]:hover,
+    .dark [data-flux-modal-close] button:focus,
+    .dark [data-flux-modal-close] [data-flux-button]:focus,
+    .dark [data-flux-modal-close] button:active,
+    .dark [data-flux-modal-close] [data-flux-button]:active {
+        color: white !important;
+        cursor: pointer;
+    }
+
+    [data-flux-modal-close] svg,
+    [data-flux-modal-close] button svg,
+    [data-flux-modal-close] [data-flux-button] svg,
+    .dark [data-flux-modal-close] svg,
+    .dark [data-flux-modal-close] button svg,
+    .dark [data-flux-modal-close] [data-flux-button] svg {
+        color: white !important;
+    }
+
+    /* Override any dynamically applied classes */
+    [data-flux-modal-close] button[class*="text-"],
+    [data-flux-modal-close] [data-flux-button][class*="text-"],
+    .dark [data-flux-modal-close] button[class*="text-"],
+    .dark [data-flux-modal-close] [data-flux-button][class*="text-"] {
+        color: white !important;
+    }
+
 </style>

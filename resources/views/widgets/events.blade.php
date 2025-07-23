@@ -11,7 +11,7 @@
         <div class="flex transition-transform duration-500 ease-in-out"
              :style="'transform: translateX(-' + (current * 100) + '%)'">
 
-            @foreach ($events as $item)
+            @forelse ($events as $item)
                 <div class="w-full flex-shrink-0 h-72 bg-white dark:bg-slate-900 flex flex-col">
                     <div class="relative h-32 w-full overflow-hidden">
                         <img src="{{ asset('img/event-default.jpg') }}" alt="Event"
@@ -35,9 +35,14 @@
                         </a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="w-full h-72 flex items-center justify-center">
+                    <p class="text-slate 600 dark:text-slate-400">Aucun événement disponible pour le moment.</p>
+                </div>
+            @endforelse
         </div>
 
+        @if(count($events) > 0)
         <button @click="current = (current === 0) ? total - 1 : current - 1"
                 class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/80 dark:bg-slate-800/80 p-2 rounded-full shadow-sm hover:bg-white hover:shadow-md dark:hover:bg-slate-800 transition">
             <x-heroicon-o-chevron-left class="w-5 h-5 text-slate-700 dark:text-white"/>
@@ -57,5 +62,6 @@
                         class="w-2 h-2 rounded-full transition-colors duration-200"></button>
             @endfor
         </div>
+        @endif
     </div>
 </div>
