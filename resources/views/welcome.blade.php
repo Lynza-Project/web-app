@@ -43,7 +43,7 @@
             @auth
                 <a href="{{ route('dashboard') }}"
                    class="hidden md:inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
-                    <span> Dashboard</span>
+                    <span> Accueil</span>
                 </a>
             @else
                 <div class="hidden md:flex space-x-3">
@@ -79,7 +79,7 @@
             @auth
                 <a href="{{ route('dashboard') }}"
                    class="inline-flex items-center px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition font-medium">
-                    <span>📊 Dashboard</span>
+                    <span>📊 Accueil</span>
                 </a>
             @else
                 <div class="flex flex-col space-y-3">

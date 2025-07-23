@@ -5,7 +5,7 @@
 <x-layouts.app>
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <flux:breadcrumbs>
-            <flux:breadcrumbs.item href="{{ route('dashboard') }}">Dashboard</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item href="{{ route('dashboard') }}">Accueil</flux:breadcrumbs.item>
             <flux:breadcrumbs.item href="{{ route('actualities.index') }}">Actualités</flux:breadcrumbs.item>
             <flux:breadcrumbs.item>{{ $actuality->title }}</flux:breadcrumbs.item>
         </flux:breadcrumbs>
