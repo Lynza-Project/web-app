@@ -219,30 +219,10 @@
                     <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                         <span class="text-2xl">📣</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-800">Actualités et Annonces</h3>
+                    <h3 class="text-xl font-semibold text-slate-800">Actualités</h3>
                     <p class="text-slate-600 mt-3 flex-grow">
-                        Diffusez facilement les actualités et annonces importantes. Publiez des mises à jour, informez sur
+                        Diffusez facilement les actualités. Publiez des mises à jour, informez sur
                         des événements à venir et gardez vos membres connectés aux informations essentielles.
-                    </p>
-                    <div class="mt-4 pt-4 border-t border-slate-100">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
-                            En savoir plus
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Objets Perdus / Retrouvés -->
-                <div class="p-6 bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
-                    <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-2xl">🔍</span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-slate-800">Objets Perdus / Retrouvés</h3>
-                    <p class="text-slate-600 mt-3 flex-grow">
-                        Une solution simple pour signaler, rechercher et récupérer des objets perdus. Filtrez par catégorie,
-                        date et lieu pour retrouver vos affaires plus facilement.
                     </p>
                     <div class="mt-4 pt-4 border-t border-slate-100">
                         <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center">
@@ -299,7 +279,7 @@
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
                             </span>
-                            Disponible au 2ème trimestre 2025
+                            Disponible au 3ème trimestre 2025
                         </div>
                     </div>
                 </div>
@@ -310,21 +290,20 @@
                     <div class="relative p-8 bg-white rounded-xl shadow-sm border border-slate-100 flex flex-col h-full">
                         <div class="flex items-center mb-6">
                             <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-2xl">🔔</span>
+                                <span class="text-2xl">🔍</span>
                             </div>
-                            <h3 class="text-xl font-semibold text-slate-800">Notifications en Temps Réel</h3>
+                            <h3 class="text-xl font-semibold text-slate-800">Objets Perdus / Retrouvés</h3>
                         </div>
                         <p class="text-slate-600">
-                            Recevez des alertes instantanées pour les événements, annonces, messages et mises à jour.
-                            Ne manquez plus aucune information importante grâce à un système de notifications
-                            centralisé et personnalisable.
+                            Une solution simple pour signaler, rechercher et récupérer des objets perdus. Filtrez par catégorie,
+                            date et lieu pour retrouver vos affaires plus facilement. Les membres peuvent également signaler des objets retrouvés pour aider la communauté.
                         </p>
                         <div class="mt-6 inline-flex items-center text-sm text-purple-600 font-medium">
                             <span class="relative flex h-3 w-3 mr-2">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
                             </span>
-                            Disponible au 3ème trimestre 2025
+                            Disponible au 1er trimestre 2026
                         </div>
                     </div>
                 </div>
@@ -452,27 +431,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100">
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nom complet</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="Votre nom">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="votre@email.com">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Message</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" placeholder="Comment pouvons-nous vous aider ?"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 transition text-lg font-medium">
-                                Envoyer le message
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                @livewire('contact-form')
 
                 <div class="space-y-8">
                     <div class="flex items-start">
@@ -486,7 +445,7 @@
                         <div class="ml-4">
                             <h3 class="text-xl font-semibold text-slate-800">Email</h3>
                             <p class="mt-1 text-slate-600">Notre équipe vous répond sous 24h</p>
-                            <a href="mailto:contact@lynza.com" class="mt-2 inline-block text-indigo-600 hover:text-indigo-800 font-medium">contact@lynza.com</a>
+                            <a href="mailto:contact@lynza.fr" class="mt-2 inline-block text-indigo-600 hover:text-indigo-800 font-medium">contact@lynza.fr</a>
                         </div>
                     </div>
 
@@ -502,21 +461,6 @@
                             <h3 class="text-xl font-semibold text-slate-800">Téléphone</h3>
                             <p class="mt-1 text-slate-600">Du lundi au vendredi, 9h-18h</p>
                             <a href="tel:+33123456789" class="mt-2 inline-block text-indigo-600 hover:text-indigo-800 font-medium">+33 1 23 45 67 89</a>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-semibold text-slate-800">Chat en direct</h3>
-                            <p class="mt-1 text-slate-600">Assistance immédiate</p>
-                            <a href="#" class="mt-2 inline-block text-indigo-600 hover:text-indigo-800 font-medium">Démarrer une conversation</a>
                         </div>
                     </div>
                 </div>
