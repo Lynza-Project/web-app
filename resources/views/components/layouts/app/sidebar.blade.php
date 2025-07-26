@@ -34,6 +34,9 @@
             <flux:navlist.item icon="book-open" :href="route('documentations.index')"
                                :current="request()->routeIs('documentations.*')"
                                wire:navigate>{{ __('Documentations') }}</flux:navlist.item>
+            <flux:navlist.item icon="ticket" :href="route('tickets.index')"
+                               :current="request()->routeIs('tickets.*')"
+                               wire:navigate>{{ __('Tickets') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>
 

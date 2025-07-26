@@ -1,7 +1,9 @@
 <div class="rounded-xl dark:border-neutral-700 space-y-4">
     <div class="flex justify-between items-center">
         <h3 class="text-lg font-medium text-slate-800 dark:text-white">Liste des utilisateurs</h3>
-        @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+        <div class="relative">
+            @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+        </div>
     </div>
 
     <div class="relative overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700">
@@ -53,7 +55,7 @@
                             $statuses = [
                                 'super-admin' => 'red',
                                 'admin' => 'pink',
-                                'user' => 'blue',
+                                'user' => 'purple',
                             ];
                             $roleName = match ($user->role) {
                                 'super-admin' => 'Super Admin',

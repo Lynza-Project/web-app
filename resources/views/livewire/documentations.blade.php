@@ -1,7 +1,16 @@
 <div class="space-y-6">
     <div class="flex justify-between items-center">
         <h3 class="text-lg font-medium text-slate-800 dark:text-white">Liste des documentations</h3>
-        @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+        <div class="flex space-x-4">
+            @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+            <select wire:model.live="perPage" id="perPage" name="perPage"
+                class="block py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option>6</option>
+                <option>12</option>
+                <option>24</option>
+                <option>48</option>
+            </select>
+        </div>
     </div>
 
     <div wire:loading.remove wire:key="documentations-index">
