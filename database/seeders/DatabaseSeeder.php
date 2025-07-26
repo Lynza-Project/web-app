@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             LostAndFoundSeeder::class,
             TicketSeeder::class,
             TicketMessageSeeder::class,
+            CoolSeeder::class,
         ]);
     }
 }
