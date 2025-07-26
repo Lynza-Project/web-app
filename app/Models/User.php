@@ -14,11 +14,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Filament\Panel;
+use Lab404\Impersonate\Models\Impersonate;
 
 class User extends Authenticatable implements HasName, FilamentUser
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, softDeletes;
+    use HasFactory, Notifiable, softDeletes, Impersonate;
 
     public function getFilamentName(): string
     {
@@ -111,5 +112,15 @@ class User extends Authenticatable implements HasName, FilamentUser
     public function isSuperAdmin(): bool
     {
         return $this->role === 'super-admin';
+    }
+
+    /**
+     * Return true or false if the user can impersonate an other user.
+     *
+     * @return bool
+     */
+    public function canImpersonate()
+    {
+        return $this->role === 'admin' || $this->role === 'super-admin';
     }
 }

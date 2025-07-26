@@ -82,4 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('themes', App\Livewire\Themes::class)->name('themes.index');
 });
 
+// Impersonate routes
+Route::impersonate();
+
 require __DIR__.'/auth.php';

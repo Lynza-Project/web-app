@@ -3,7 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include('partials.head')
-    <x-theme-styles />
+    <x-theme-styles/>
 </head>
 <body class="min-h-screen bg-white dark:bg-zinc-800">
 <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
@@ -43,6 +43,14 @@
     <flux:spacer/>
 
     <flux:navlist variant="outline">
+        @impersonating
+        <flux:navlist.group heading="Assistance utilisateur" class="grid">
+            <flux:navlist.item icon="arrow-left" :href="route('impersonate.leave')">
+                {{ __('Quitter l\'assistance') }}
+            </flux:navlist.item>
+        </flux:navlist.group>
+        @endImpersonating
+
         @if(UserHelper::isSuperAdministrator())
             <flux:navlist.group heading="Administration" class="grid">
                 <flux:navlist.item icon="shield-check" href="/superadmin" target="_blank" class="text-red">
