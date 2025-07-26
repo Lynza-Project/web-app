@@ -54,7 +54,7 @@ test('it can create documentation without image', function () {
 });
 
 test('it can create documentation with image', function () {
-    Storage::fake('public');
+    Storage::fake('s3');
 
     $user = User::factory()->create([
         'organization_id' => Organization::factory()->create()->id,
@@ -83,7 +83,7 @@ test('it can create documentation with image', function () {
 
     // Check that the image was stored
     expect($documentation->image)->not->toBeNull();
-    Storage::disk('public')->assertExists($documentation->image);
+    Storage::disk('s3')->assertExists($documentation->image);
 });
 
 test('it resets form after creation', function () {
