@@ -18,7 +18,7 @@
                 <img src="{{ $newImage->temporaryUrl() }}" class="h-32 w-auto object-cover rounded-lg">
             @elseif ($image)
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Image actuelle:</p>
-                <img src="{{ asset($image) }}" class="h-32 w-auto object-cover rounded-lg">
+                <img src="{{ Storage::disk('s3')->url($image) }}" class="h-32 w-auto object-cover rounded-lg">
             @endif
         </div>
 

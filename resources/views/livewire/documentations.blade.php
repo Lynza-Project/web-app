@@ -11,7 +11,7 @@
                     class="flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
                     wire:key="documentation-{{ $documentation->id }}">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ $documentation->image_url }}" alt="Image Documentation"
+                        <img src="{{ $documentation->image ? Storage::disk('s3')->url($documentation->image) : asset('img/documentation-default.jpg') }}"
                              class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                     </div>

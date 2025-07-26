@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Storage;
+
+@endphp
 <div class="space-y-6">
     <div class="flex justify-between items-center">
         <h3 class="text-lg font-medium text-slate-800 dark:text-white">Liste des actualités</h3>
@@ -11,8 +15,7 @@
                     class="flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
                     wire:key="actuality-{{ $actuality->id }}">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ $actuality->image ? Storage::disk('s3')->temporaryUrl($actuality->image, now()->addMinutes(5)) : asset('img\university.jpg') }}" alt="Image Actualité"
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="{{ $actuality->image ? Storage::disk('s3')->url($actuality->image) : asset('img/actuality-default.jpg') }}" alt="Logo" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                         <div class="absolute bottom-3 left-4">
                             <span class="px-2.5 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 rounded-full">

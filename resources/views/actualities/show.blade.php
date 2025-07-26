@@ -23,7 +23,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                 <div class="relative h-80 w-full overflow-hidden">
-                    <img src="{{ asset($actuality->image ?? 'img\university.jpg') }}" alt="Image Actualité"
+                    <img src="{{ $actuality->image ? Storage::disk('s3')->url($actuality->image) : asset('img/actuality-default.jpg') }}" alt="Image Actualité"
                          class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                     <div class="absolute bottom-4 left-6 right-6">

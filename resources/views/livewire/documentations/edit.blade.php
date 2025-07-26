@@ -14,7 +14,8 @@
             @if($image)
                 <div class="mb-3">
                     <p class="text-sm text-gray-500 mb-2">Image actuelle :</p>
-                    <img src="{{ $documentation->image_url }}" alt="Image actuelle" class="h-32 w-auto object-cover rounded-lg">
+                    <img src="{{ $documentation->image ? Storage::disk('s3')->url($documentation->image) : asset('img/documentation-default.jpg') }}"
+                         alt="Image actuelle" class="h-32 w-auto object-cover rounded-lg">
                 </div>
             @endif
 

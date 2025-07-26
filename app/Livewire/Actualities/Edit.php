@@ -48,7 +48,7 @@ class Edit extends Component
         ];
 
         if ($this->newImage) {
-            $data['image'] = $this->newImage->store('actualities/' . auth()->user()->organization_id, 'public');
+            $data['image'] = $this->newImage->store('actualities/' . auth()->user()->organization_id . '/logos', 's3');
         }
 
         $this->actuality->update($data);

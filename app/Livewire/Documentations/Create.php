@@ -39,7 +39,7 @@ class Create extends Component
         ];
 
         if ($this->image) {
-            $data['image'] = $this->image->store('documentations/' . auth()->user()->organization_id, 'public');
+            $data['image'] = $this->image->store('documentations/' . auth()->user()->organization_id . '/logos', 's3');
         } else {
             $data['image'] = null;
         }
