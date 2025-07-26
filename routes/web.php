@@ -13,6 +13,19 @@ Route::get('/', static function () {
     return view('welcome');
 })->name('home');
 
+// Legal pages
+Route::get('/mentions-legales', static function () {
+    return view('legal.mentions-legales');
+})->name('mentions-legales');
+
+Route::get('/confidentialite', static function () {
+    return view('legal.confidentialite');
+})->name('confidentialite');
+
+Route::get('/cgu', static function () {
+    return view('legal.cgu');
+})->name('cgu');
+
 Route::middleware(['auth', 'verified'])->group(static function () {
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/import', App\Livewire\Users\ImportPage::class)->name('users.import');
