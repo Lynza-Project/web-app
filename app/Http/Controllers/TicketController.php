@@ -11,12 +11,7 @@ class TicketController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            if (!UserHelper::isAdministrator() && auth()->user()->role !== 'admin') {
-                abort(403, 'Vous n\'avez pas accès à cette page.');
-            }
-            return $next($request);
-        })->only(['index']);
+        // All authenticated users can access tickets
     }
 
     /**

@@ -1,7 +1,12 @@
 <div x-data="{ weather: null }"
-     x-init="fetch('https://api.open-meteo.com/v1/forecast?latitude=48.8566&longitude=2.3522&current_weather=true&timezone=Europe/Paris')
+     x-init="fetch('https://api.open-meteo.com/v1/forecast?latitude=45.7485&longitude=4.8467&models=meteofrance_seamless&current=temperature_2m,weather_code&forecast_days=1')
             .then(response => response.json())
-            .then(data => weather = data.current_weather)"
+            .then(data => {
+                weather = {
+                    temperature: data.current.temperature_2m,
+                    weathercode: data.current.weather_code
+                };
+            })"
      class="relative w-full max-w-lg mx-auto h-64 flex flex-col justify-between items-center p-6 bg-white dark:bg-zinc-900 rounded-xl border border-neutral-200 dark:border-zinc-700 shadow-lg dark:shadow-none overflow-hidden">
 
     <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center">
@@ -9,7 +14,7 @@
     </h2>
 
     <p class="text-gray-600 dark:text-gray-300 text-sm text-center">
-        Paris, France
+        Lyon, France
     </p>
 
     <!-- Bloc Météo -->
@@ -17,7 +22,7 @@
         <!-- Température et Icône -->
         <div class="flex items-center">
             <template x-if="weather">
-                <img :src="'https://openweathermap.org/img/wn/' + getWeatherIcon(weather.weathercode) + '.png'"
+                <img :src="'https://openweathermap.org/img/wn/' + getWeatherIcon(weather.weathercode) + '@2x.png'"
                      class="w-12 h-12" alt="Icône Météo">
             </template>
             <span class="text-3xl font-bold text-gray-900 dark:text-gray-100" x-text="weather.temperature + '°C'"></span>
