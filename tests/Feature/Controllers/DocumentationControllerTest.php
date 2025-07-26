@@ -4,14 +4,6 @@ use App\Helpers\UserHelper;
 use App\Models\Documentation;
 use App\Models\Organization;
 use App\Models\User;
-use Mockery;
-
-beforeEach(function () {
-    // Mock the UserHelper methods
-    $this->mock = Mockery::mock('alias:' . UserHelper::class);
-    $this->mock->shouldReceive('isAdministrator')->andReturn(true)->byDefault();
-    $this->mock->shouldReceive('isSuperAdministrator')->andReturn(false)->byDefault();
-});
 
 test('guests cannot access documentation pages', function () {
     $documentation = Documentation::factory()->create();

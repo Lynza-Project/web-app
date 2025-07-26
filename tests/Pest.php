@@ -11,9 +11,18 @@
 |
 */
 
+use App\Helpers\UserHelper;
+
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature', 'Unit');
+
+beforeAll(function () {
+    // Crée le mock de UserHelper une seule fois
+    $mock = Mockery::mock('alias:' . UserHelper::class);
+    $mock->shouldReceive('isAdministrator')->andReturn(true)->byDefault();
+    $mock->shouldReceive('isSuperAdministrator')->andReturn(false)->byDefault();
+});
 
 /*
 |--------------------------------------------------------------------------
