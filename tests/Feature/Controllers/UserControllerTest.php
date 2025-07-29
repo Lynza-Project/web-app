@@ -7,9 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    // Mock the UserHelper methods
-    $this->mock = Mockery::mock('alias:' . UserHelper::class);
-    $this->mock->shouldReceive('isSuperAdministrator')->andReturn(false)->byDefault();
+    $this->mock = Mockery::mock(UserHelper::class);
 });
 
 it('displays the index page when user is an administrator', function () {

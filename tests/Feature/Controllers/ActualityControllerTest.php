@@ -4,14 +4,12 @@ use App\Helpers\UserHelper;
 use App\Models\Actuality;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    // Mock the UserHelper methods
-    $this->mock = Mockery::mock('alias:' . UserHelper::class);
-    $this->mock->shouldReceive('isAdministrator')->andReturn(true)->byDefault();
-    $this->mock->shouldReceive('isSuperAdministrator')->andReturn(false)->byDefault();
+    $this->mock = Mockery::mock(UserHelper::class);
 });
 
 it('displays the index page', function () {
