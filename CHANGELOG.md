@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Weather component updated to show Lyon.
 - Committed SQLite database used for tests and updated PHPUnit configuration.
 
-## [0.0.5] - 2025-07-29
+## [0.0.5] - 2025-07-20
 ### Added
 - Initial ticketing features with Livewire components.
 - User impersonation routes and interface.
