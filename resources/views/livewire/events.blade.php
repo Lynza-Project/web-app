@@ -1,7 +1,18 @@
 <div class="space-y-6">
     <div class="flex justify-between items-center">
         <h3 class="text-lg font-medium text-slate-800 dark:text-white">Liste des événements</h3>
-        @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+        <div class="flex space-x-4">
+            <div class="relative">
+                @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+            </div>
+            <select wire:model.live="perPage" id="perPage" name="perPage"
+                class="block py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option>6</option>
+                <option>12</option>
+                <option>24</option>
+                <option>48</option>
+            </select>
+        </div>
     </div>
 
     <div wire:loading.remove wire:key="events-index">
@@ -11,7 +22,7 @@
                     class="flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
                     wire:key="event-{{ $event->id }}">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ $event->image_url }}" alt="Image Événement"
+                        <img src="{{ $event->image ? Storage::disk('s3')->url($event->image) : asset('img/event-default.jpg') }}" alt="{{ $event->title }}"
                              class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                         <div class="absolute bottom-3 left-4">

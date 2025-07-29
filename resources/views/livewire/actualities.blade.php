@@ -1,7 +1,20 @@
+@php
+    use Illuminate\Support\Facades\Storage;
+
+@endphp
 <div class="space-y-6">
     <div class="flex justify-between items-center">
         <h3 class="text-lg font-medium text-slate-800 dark:text-white">Liste des actualités</h3>
-        @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+        <div class="flex space-x-4">
+            @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+            <select wire:model.live="perPage" id="perPage" name="perPage"
+                class="block py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option>6</option>
+                <option>12</option>
+                <option>24</option>
+                <option>48</option>
+            </select>
+        </div>
     </div>
 
     <div wire:loading.remove wire:key="actualities-index">
@@ -11,8 +24,7 @@
                     class="flex flex-col bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden"
                     wire:key="actuality-{{ $actuality->id }}">
                     <div class="relative h-48 w-full overflow-hidden">
-                        <img src="{{ $actuality->image ? Storage::disk('s3')->temporaryUrl($actuality->image, now()->addMinutes(5)) : asset('img\university.jpg') }}" alt="Image Actualité"
-                             class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                        <img src="{{ $actuality->image ? Storage::disk('s3')->url($actuality->image) : asset('img/actuality-default.jpg') }}" alt="Logo" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                         <div class="absolute bottom-3 left-4">
                             <span class="px-2.5 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 rounded-full">

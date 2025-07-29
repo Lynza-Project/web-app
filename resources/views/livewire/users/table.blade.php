@@ -1,7 +1,9 @@
 <div class="rounded-xl dark:border-neutral-700 space-y-4">
     <div class="flex justify-between items-center">
         <h3 class="text-lg font-medium text-slate-800 dark:text-white">Liste des utilisateurs</h3>
-        @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+        <div class="relative">
+            @livewire('search-bar', ['model' => 'search'], key('search-bar'))
+        </div>
     </div>
 
     <div class="relative overflow-hidden rounded-xl border border-slate-200 shadow-sm dark:border-slate-700">
@@ -31,6 +33,17 @@
                             <flux:tooltip content="Supprimer">
                                 @livewire('users.delete', ['user' => $user], key("delete-{$user->id}-{$index}"))
                             </flux:tooltip>
+                            @canImpersonate
+                                @if(can_be_impersonated($user))
+                                    <flux:tooltip content="Simuler la connexion">
+                                        <a href="{{ route('impersonate', $user->id) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                            </svg>
+                                        </a>
+                                    </flux:tooltip>
+                                @endif
+                            @endCanImpersonate
                         </div>
                     </td>
 
@@ -53,7 +66,7 @@
                             $statuses = [
                                 'super-admin' => 'red',
                                 'admin' => 'pink',
-                                'user' => 'blue',
+                                'user' => 'purple',
                             ];
                             $roleName = match ($user->role) {
                                 'super-admin' => 'Super Admin',

@@ -19,7 +19,13 @@ class Delete extends Component
     {
         $this->documentation->delete();
 
+        self::modal('delete-documentation-' . $this->documentation->id)->close();
+
         $this->dispatch('documentationDeleted');
+
+        session()->flash('success', 'Documentation supprimée avec succès.');
+
+        redirect()->route('documentations.index');
     }
 
     public function render(): View

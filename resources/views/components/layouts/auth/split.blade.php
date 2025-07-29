@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include('partials.head')
 </head>
@@ -13,10 +13,9 @@
         <div class="absolute inset-0 bg-neutral-900/70"></div>
 
         <a href="{{ route('home') }}" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
-                    <span class="flex h-10 w-10 items-center justify-center rounded-md">
+                    <span class="flex h-32 w-32 items-center justify-center rounded-md">
                         <x-app-logo-icon class="mr-2 h-7 fill-current text-white" />
                     </span>
-            {{ config('app.name', 'Laravel') }}
         </a>
 
         @php

@@ -14,7 +14,7 @@
             @forelse ($events as $item)
                 <div class="w-full flex-shrink-0 h-72 bg-white dark:bg-slate-900 flex flex-col">
                     <div class="relative h-32 w-full overflow-hidden">
-                        <img src="{{ asset('img/event-default.jpg') }}" alt="Event"
+                        <img src="{{ $item->image ? Storage::disk('s3')->url($item->image) : asset('img/event-default.jpg') }}" alt="{{ $item->title }}"
                              class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                         <div class="absolute bottom-3 left-4 right-4">
@@ -25,10 +25,10 @@
                     </div>
                     <div class="p-4 flex-grow flex flex-col">
                         <h3 class="text-lg font-semibold text-slate-800 dark:text-white">{{ $item->title }}</h3>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 flex-grow">{{ Str::limit($item->content, 100) }}</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 flex-grow">{{ strip_tags(Str::limit($item->content, 200)) }}</p>
                         <a href="{{ route('events.show', $item) }}"
                            class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium mt-2 inline-flex items-center">
-                            Découvrir
+                            Accéder à l'événement
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
