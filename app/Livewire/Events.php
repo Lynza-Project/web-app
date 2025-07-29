@@ -16,6 +16,12 @@ class Events extends Component
     public $sortField = 'start_date';
     public $sortDirection = 'desc';
     public bool $canDelete = false;
+    public int $perPage = 6;
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'perPage' => ['except' => 6],
+    ];
 
     public function mount(): void
     {
@@ -49,7 +55,7 @@ class Events extends Component
                     ->orWhere('location', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(6);
+            ->paginate($this->perPage);
 
         return view('livewire.events', compact('events'));
     }
