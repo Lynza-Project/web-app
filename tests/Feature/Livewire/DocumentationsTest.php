@@ -131,3 +131,16 @@ test('it responds to documentation events', function () {
         ->call('documentationDeleted')
         ->assertDispatched('refresh');
 });
+
+test('it handles searchUpdated event with array parameter', function () {
+    $user = User::factory()->create([
+        'organization_id' => Organization::factory()->create()->id,
+    ]);
+
+    $this->actingAs($user);
+
+    Livewire::test(Documentations::class)
+        ->assertSet('search', '')
+        ->dispatch('searchUpdated', ['test search'])
+        ->assertSet('search', 'test search');
+});

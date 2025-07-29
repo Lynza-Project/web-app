@@ -112,7 +112,7 @@ test('it can create event without image', function () {
 });
 
 test('it can create event with image', function () {
-    Storage::fake('public');
+    Storage::fake('s3');
 
     $user = User::factory()->create([
         'organization_id' => Organization::factory()->create()->id,
@@ -144,7 +144,7 @@ test('it can create event with image', function () {
 
     // Check that the image was stored
     expect($event->image)->not->toBeNull();
-    Storage::disk('public')->assertExists($event->image);
+    Storage::disk('s3')->assertExists($event->image);
 });
 
 test('it can create event with date range', function () {
