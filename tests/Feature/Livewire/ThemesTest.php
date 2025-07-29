@@ -1,7 +1,7 @@
 <?php
 
-use App\Livewire\Events;
-use App\Models\Event;
+use App\Livewire\Themes;
+use App\Models\Theme;
 use App\Models\Organization;
 use App\Models\User;
 use Livewire\Livewire;
@@ -13,62 +13,62 @@ test('the component can render', function () {
 
     $this->actingAs($user);
 
-    Livewire::test(Events::class)
+    Livewire::test(Themes::class)
         ->assertStatus(200);
 });
 
-test('it displays events for current organization', function () {
+test('it displays themes for current organization', function () {
     // Create an organization and user
     $organization = Organization::factory()->create();
     $user = User::factory()->create([
         'organization_id' => $organization->id,
     ]);
 
-    // Create events for this organization
-    $events = Event::factory()->count(3)->create([
+    // Create themes for this organization
+    $themes = Theme::factory()->count(3)->create([
         'organization_id' => $organization->id,
     ]);
 
-    // Create events for another organization
+    // Create themes for another organization
     $otherOrganization = Organization::factory()->create();
-    Event::factory()->count(2)->create([
+    Theme::factory()->count(2)->create([
         'organization_id' => $otherOrganization->id,
     ]);
 
     $this->actingAs($user);
 
-    Livewire::test(Events::class)
-        ->assertViewHas('events', function ($viewEvents) use ($organization) {
-            return $viewEvents->count() === 3 &&
-                $viewEvents->pluck('organization_id')->unique()->first() === $organization->id;
+    Livewire::test(Themes::class)
+        ->assertViewHas('themes', function ($viewThemes) use ($organization) {
+            return $viewThemes->count() === 3 &&
+                $viewThemes->pluck('organization_id')->unique()->first() === $organization->id;
         });
 });
 
-test('it can sort events', function () {
+test('it can sort themes', function () {
     // Create an organization and user
     $organization = Organization::factory()->create();
     $user = User::factory()->create([
         'organization_id' => $organization->id,
     ]);
 
-    // Create events with different dates
-    Event::factory()->create([
+    // Create themes with different titles
+    Theme::factory()->create([
         'organization_id' => $organization->id,
-        'title' => 'Older Event',
-        'start_date' => now()->subDays(2),
+        'title' => 'Z Theme',
+        'created_at' => now()->subDay(),
     ]);
 
-    Event::factory()->create([
+    Theme::factory()->create([
         'organization_id' => $organization->id,
-        'title' => 'Newer Event',
-        'start_date' => now(),
+        'title' => 'A Theme',
+        'created_at' => now(),
     ]);
 
     $this->actingAs($user);
 
-    // Test default sorting (start_date desc)
-    Livewire::test(Events::class)
-        ->assertSet('sortField', 'start_date')
+    // Test default sorting (created_at desc)
+    Livewire::test(Themes::class)
+        ->assertSet('sortField', 'created_at')
         ->assertSet('sortDirection', 'desc')
         ->call('sortBy', 'title')
         ->assertSet('sortField', 'title')
@@ -77,72 +77,62 @@ test('it can sort events', function () {
         ->assertSet('sortDirection', 'desc');
 });
 
-test('it can search events', function () {
+test('it can search themes', function () {
     // Create an organization and user
     $organization = Organization::factory()->create();
     $user = User::factory()->create([
         'organization_id' => $organization->id,
     ]);
 
-    // Create events with different titles, descriptions, and locations
-    Event::factory()->create([
+    // Create themes with different titles and primary colors
+    Theme::factory()->create([
         'organization_id' => $organization->id,
-        'title' => 'Laravel Conference',
-        'description' => 'A conference about Laravel',
-        'location' => 'Paris',
+        'title' => 'Blue Theme',
+        'primary' => 'blue-500',
     ]);
 
-    Event::factory()->create([
+    Theme::factory()->create([
         'organization_id' => $organization->id,
-        'title' => 'PHP Workshop',
-        'description' => 'A workshop about PHP',
-        'location' => 'London',
+        'title' => 'Red Theme',
+        'primary' => 'red-500',
     ]);
 
     $this->actingAs($user);
 
     // Test search by title
-    Livewire::test(Events::class)
-        ->set('search', 'Laravel')
-        ->assertViewHas('events', function ($viewEvents) {
-            return $viewEvents->count() === 1 &&
-                $viewEvents->first()->title === 'Laravel Conference';
+    Livewire::test(Themes::class)
+        ->set('search', 'Blue')
+        ->assertViewHas('themes', function ($viewThemes) {
+            return $viewThemes->count() === 1 &&
+                $viewThemes->first()->title === 'Blue Theme';
         });
 
-    // Test search by description
-    Livewire::test(Events::class)
-        ->set('search', 'workshop')
-        ->assertViewHas('events', function ($viewEvents) {
-            return $viewEvents->count() === 1 &&
-                $viewEvents->first()->title === 'PHP Workshop';
-        });
-
-    // Test search by location
-    Livewire::test(Events::class)
-        ->set('search', 'London')
-        ->assertViewHas('events', function ($viewEvents) {
-            return $viewEvents->count() === 1 &&
-                $viewEvents->first()->location === 'London';
+    // Test search by primary color
+    Livewire::test(Themes::class)
+        ->set('search', 'red')
+        ->assertViewHas('themes', function ($viewThemes) {
+            return $viewThemes->count() === 1 &&
+                $viewThemes->first()->primary === 'red-500';
         });
 });
 
-test('it responds to event events', function () {
+test('it responds to theme events', function () {
     $user = User::factory()->create([
         'organization_id' => Organization::factory()->create()->id,
     ]);
 
     $this->actingAs($user);
 
-    Livewire::test(Events::class)
-        ->call('eventCreated')
+    Livewire::test(Themes::class)
+        ->call('themeCreated')
         ->assertDispatched('refresh')
-        ->call('eventEdited')
+        ->call('themeEdited')
         ->assertDispatched('refresh')
-        ->call('eventDeleted')
+        ->call('themeDeleted')
         ->assertDispatched('refresh');
 });
 
-test('it sets canDelete based on user role', function () {
+test('it sets canManage based on user role', function () {
     // Regular user
     $user = User::factory()->create([
         'organization_id' => Organization::factory()->create()->id,
@@ -151,8 +141,8 @@ test('it sets canDelete based on user role', function () {
 
     $this->actingAs($user);
 
-    Livewire::test(Events::class)
-        ->assertSet('canDelete', false);
+    Livewire::test(Themes::class)
+        ->assertSet('canManage', false);
 
     // Admin user
     $admin = User::factory()->create([
@@ -162,8 +152,8 @@ test('it sets canDelete based on user role', function () {
 
     $this->actingAs($admin);
 
-    Livewire::test(Events::class)
-        ->assertSet('canDelete', true);
+    Livewire::test(Themes::class)
+        ->assertSet('canManage', true);
 
     // Super admin
     $superAdmin = User::factory()->create([
@@ -173,8 +163,8 @@ test('it sets canDelete based on user role', function () {
 
     $this->actingAs($superAdmin);
 
-    Livewire::test(Events::class)
-        ->assertSet('canDelete', true);
+    Livewire::test(Themes::class)
+        ->assertSet('canManage', true);
 });
 
 test('it handles searchUpdated event with array parameter', function () {
@@ -184,7 +174,7 @@ test('it handles searchUpdated event with array parameter', function () {
 
     $this->actingAs($user);
 
-    Livewire::test(Events::class)
+    Livewire::test(Themes::class)
         ->assertSet('search', '')
         ->dispatch('searchUpdated', ['test search'])
         ->assertSet('search', 'test search');
