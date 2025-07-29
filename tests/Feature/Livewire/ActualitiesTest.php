@@ -166,3 +166,16 @@ test('it sets canDelete based on user role', function () {
     Livewire::test(Actualities::class)
         ->assertSet('canDelete', true);
 });
+
+test('it handles searchUpdated event with array parameter', function () {
+    $user = User::factory()->create([
+        'organization_id' => Organization::factory()->create()->id,
+    ]);
+
+    $this->actingAs($user);
+
+    Livewire::test(Actualities::class)
+        ->assertSet('search', '')
+        ->dispatch('searchUpdated', ['test search'])
+        ->assertSet('search', 'test search');
+});

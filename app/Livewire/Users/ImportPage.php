@@ -20,6 +20,7 @@ class ImportPage extends Component
     public $file;
     public $users = [];
     public $showPreview = false;
+    public $errorMessage = null;
 
     protected $rules = [
         'file' => 'required|file|mimes:xlsx,xls,csv',
@@ -49,13 +50,22 @@ class ImportPage extends Component
             $this->users = $import->getUsers();
 
             if (empty($this->users)) {
-                session()?->flash('error', 'Aucun utilisateur trouvé dans le fichier.');
+                // Set error message in both session and component property
+                $this->errorMessage = 'Aucun utilisateur trouvé dans le fichier.';
+                session()->flash('error', $this->errorMessage);
+                // Explicitly set showPreview to false
+                $this->showPreview = false;
                 return;
             }
 
+            // Explicitly set showPreview to true when users are found
             $this->showPreview = true;
         } catch (\Exception $e) {
-            session()?->flash('error', 'Une erreur est survenue lors de l\'importation du fichier: ' . $e->getMessage());
+            // Set error message in both session and component property
+            $this->errorMessage = 'Une erreur est survenue lors de l\'importation du fichier: ' . $e->getMessage();
+            session()->flash('error', $this->errorMessage);
+            // Explicitly set showPreview to false on error
+            $this->showPreview = false;
         }
     }
 

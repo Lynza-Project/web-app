@@ -27,12 +27,12 @@ class ThemePolicy
 
     public function update(User $user, Theme $theme): bool
     {
-        return $user->role === 'super-admin' || $user->organization->id === $theme->organization->id;
+        return $user->role === 'super-admin' || ($user->organization->id === $theme->organization->id && $user->role === 'admin');
     }
 
     public function delete(User $user, Theme $theme): bool
     {
-        return $user->role === 'super-admin' || $user->organization->id === $theme->organization->id;
+        return $user->role === 'super-admin' || ($user->organization->id === $theme->organization->id && $user->role === 'admin');
     }
 
     public function restore(User $user): bool

@@ -20,6 +20,10 @@ class Documentation extends Model
         'image',
     ];
 
+    protected $appends = [
+        'image_url',
+    ];
+
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
@@ -28,5 +32,12 @@ class Documentation extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image
+            ? Storage::disk('s3')->temporaryUrl($this->image, now()->addMinutes(5))
+            : asset('img\university.jpg');
     }
 }

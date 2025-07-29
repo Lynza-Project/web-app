@@ -15,13 +15,11 @@ class ThemeFactory extends Factory
     {
         return [
             'title' => fake()->word(),
-            'primary' => fake()->word(),
-            'danger' => fake()->word(),
-            'gray' => fake()->word(),
-            'info' => fake()->word(),
-            'success' => fake()->word(),
-            'warning' => fake()->word(),
+            'primary' => fake()->colorName(),
             'font' => fake()->word(),
+            'background_color' => fake()->colorName(),
+            'button_color' => fake()->colorName(),
+            'logo_path' => null,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

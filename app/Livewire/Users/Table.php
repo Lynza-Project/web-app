@@ -16,6 +16,7 @@ class Table extends Component
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
     public bool $canDelete = false;
+    public $perPage = 10;
 
     public function mount(): void
     {
@@ -48,7 +49,7 @@ class Table extends Component
                     ->orWhere('email', 'like', '%' . $this->search . '%');
             })
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(10);
+            ->paginate($this->perPage);
 
         return view('livewire.users.table', compact('users'));
     }

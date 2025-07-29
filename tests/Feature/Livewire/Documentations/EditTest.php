@@ -97,7 +97,7 @@ test('it can update documentation without changing image', function () {
 });
 
 test('it can update documentation with new image', function () {
-    Storage::fake('public');
+    Storage::fake('s3');
 
     $organization = Organization::factory()->create();
     $user = User::factory()->create([
@@ -132,11 +132,11 @@ test('it can update documentation with new image', function () {
 
     // Check that the image was updated
     expect($documentation->image)->not->toBe('original-image.jpg');
-    Storage::disk('public')->assertExists($documentation->image);
+    Storage::disk('s3')->assertExists($documentation->image);
 });
 
 test('it resets new image after update', function () {
-    Storage::fake('public');
+    Storage::fake('s3');
 
     $organization = Organization::factory()->create();
     $user = User::factory()->create([

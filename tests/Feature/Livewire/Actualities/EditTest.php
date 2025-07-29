@@ -97,7 +97,7 @@ test('it can update actuality without changing image', function () {
 });
 
 test('it can update actuality with new image', function () {
-    Storage::fake('public');
+    Storage::fake('s3');
 
     $organization = Organization::factory()->create();
     $user = User::factory()->create([
@@ -132,5 +132,5 @@ test('it can update actuality with new image', function () {
 
     // Check that the image was updated
     expect($actuality->image)->not->toBe('original-image.jpg');
-    Storage::disk('public')->assertExists($actuality->image);
+    Storage::disk('s3')->assertExists($actuality->image);
 });

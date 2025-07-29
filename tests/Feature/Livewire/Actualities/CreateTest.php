@@ -54,7 +54,7 @@ test('it can create actuality without image', function () {
 });
 
 test('it can create actuality with image', function () {
-    Storage::fake('public');
+    Storage::fake('s3');
 
     $user = User::factory()->create([
         'organization_id' => Organization::factory()->create()->id,
@@ -83,7 +83,7 @@ test('it can create actuality with image', function () {
 
     // Check that the image was stored
     expect($actuality->image)->not->toBeNull();
-    Storage::disk('public')->assertExists($actuality->image);
+    Storage::disk('s3')->assertExists($actuality->image);
 });
 
 test('it resets form after creation', function () {
