@@ -29,15 +29,4 @@ class Documentation extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $appends = [
-        'image_url',
-    ];
-
-    public function getImageUrlAttribute(): ?string
-    {
-        return $this->image
-            ? Storage::disk('s3')->temporaryUrl($this->image, now()->addMinutes(5))
-            : asset('img\university.jpg');
-    }
 }

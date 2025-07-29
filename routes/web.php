@@ -3,6 +3,8 @@
 use App\Http\Controllers\ActualityController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketMessageController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -12,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', static function () {
     return view('welcome');
 })->name('home');
+
+// Legal pages
+Route::get('/mentions-legales', static function () {
+    return view('legal.mentions-legales');
+})->name('mentions-legales');
+
+Route::get('/confidentialite', static function () {
+    return view('legal.confidentialite');
+})->name('confidentialite');
+
+Route::get('/cgu', static function () {
+    return view('legal.cgu');
+})->name('cgu');
 
 Route::middleware(['auth', 'verified'])->group(static function () {
     Route::get('users', [UserController::class, 'index'])->name('users.index');
@@ -37,6 +52,19 @@ Route::middleware(['auth', 'verified'])->group(static function () {
     Route::get('documentations/{documentation}/edit', [DocumentationController::class, 'edit'])->name('documentations.edit');
     Route::put('documentations/{documentation}', [DocumentationController::class, 'update'])->name('documentations.update');
     Route::delete('documentations/{documentation}', [DocumentationController::class, 'destroy'])->name('documentations.destroy');
+
+    // Ticket routes
+    Route::get('tickets', [TicketController::class, 'index'])->name('tickets.index');
+    Route::get('tickets/create', [TicketController::class, 'create'])->name('tickets.create');
+    Route::get('tickets/{ticket}', [TicketController::class, 'show'])->name('tickets.show');
+    Route::get('tickets/{ticket}/edit', [TicketController::class, 'edit'])->name('tickets.edit');
+    Route::put('tickets/{ticket}', [TicketController::class, 'update'])->name('tickets.update');
+    Route::delete('tickets/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
+
+    // Ticket message routes
+    Route::post('tickets/{ticket}/messages', [TicketMessageController::class, 'store'])->name('ticket-messages.store');
+    Route::put('ticket-messages/{ticketMessage}', [TicketMessageController::class, 'update'])->name('ticket-messages.update');
+    Route::delete('ticket-messages/{ticketMessage}', [TicketMessageController::class, 'destroy'])->name('ticket-messages.destroy');
 });
 
 Route::view('dashboard', 'dashboard')
@@ -53,5 +81,8 @@ Route::middleware(['auth'])->group(function () {
     // Theme management routes
     Route::get('themes', App\Livewire\Themes::class)->name('themes.index');
 });
+
+// Impersonate routes
+Route::impersonate();
 
 require __DIR__.'/auth.php';

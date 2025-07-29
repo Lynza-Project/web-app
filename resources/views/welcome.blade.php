@@ -21,7 +21,7 @@
 <nav class="bg-white shadow-sm fixed w-full top-0 z-50 border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            <a href="#" class="text-2xl font-extrabold text-indigo-600 tracking-wide hover:text-indigo-700 transition">
+            <a href="#" id="logo-link" class="text-2xl font-extrabold text-indigo-600 tracking-wide hover:text-indigo-700 transition">
                 <img src="{{ asset('img/lynza_couleurs-svg.svg') }}" alt="Lynza" class="h-20">
             </a>
 
@@ -132,11 +132,11 @@
 
             <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#features"
-                   class="inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition text-lg font-medium">
+                   class="nav-link inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 transition text-lg font-medium">
                     🔍 Découvrir Lynza
                 </a>
                 <a href="#contact"
-                   class="inline-flex items-center justify-center px-6 py-3 bg-white text-indigo-600 border border-indigo-200 rounded-lg shadow-sm hover:bg-indigo-50 transition text-lg font-medium">
+                   class="nav-link inline-flex items-center justify-center px-6 py-3 bg-white text-indigo-600 border border-indigo-200 rounded-lg shadow-sm hover:bg-indigo-50 transition text-lg font-medium">
                     📩 Nous contacter
                 </a>
             </div>
@@ -477,9 +477,9 @@
                     <p class="mt-2 text-slate-400 text-sm">© 2025 Lynza. Tous droits réservés.</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-slate-300 hover:text-white transition">Mentions légales</a>
-                    <a href="#" class="text-slate-300 hover:text-white transition">Confidentialité</a>
-                    <a href="#" class="text-slate-300 hover:text-white transition">CGU</a>
+                    <a href="{{ route('mentions-legales') }}" class="text-slate-300 hover:text-white transition">Mentions légales</a>
+                    <a href="{{ route('confidentialite') }}" class="text-slate-300 hover:text-white transition">Confidentialité</a>
+                    <a href="{{ route('cgu') }}" class="text-slate-300 hover:text-white transition">CGU</a>
                 </div>
             </div>
         </div>
@@ -500,6 +500,15 @@
                     block: 'start'     // Alignement au début
                 });
             }
+        });
+    });
+
+    // Animation pour le logo qui ramène en haut de page
+    document.getElementById('logo-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Animation fluide
         });
     });
 </script>
