@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2025-08-19
+### Added
+- Support contact form for users to directly reach the support team.
+
+## [1.0.0] - 2025-08-19
+### Added
+- Full set of **legal pages**: Terms of use, Privacy policy, Legal mentions.
+- **Ticket management system**: create, edit and manage tickets with integrated messaging.
+- **User impersonation**: admins can log in as another user to provide support.
+- **S3 storage integration** for images (actualities, events, documentation).
+- **Dashboard modules**: actualities, events and weather widget (configured for Lyon).
+- **Dark mode** and various design improvements.
+- **Database seeders**: organizations, themes, events, tickets and `CoolSeeder` for demo data.
+### Changed
+- Logo replaced with an image asset for better layout consistency.
+- Dashboard layout cleaned up (removed placeholders).
+- SQLite committed for testing and PHPUnit configuration updated.
+
 ## [0.0.6] - 2025-07-29
 ### Added
 - Legal pages for terms of use, privacy policy and legal mentions.
