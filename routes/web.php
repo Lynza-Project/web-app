@@ -28,6 +28,10 @@ Route::get('/cgu', static function () {
     return view('legal.cgu');
 })->name('cgu');
 
+Route::get('/support', static function () {
+    return view('support');
+})->name('support');
+
 Route::middleware(['auth', 'verified'])->group(static function () {
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/import', App\Livewire\Users\ImportPage::class)->name('users.import');

@@ -51,9 +51,16 @@
         </flux:navlist.group>
         @endImpersonating
 
+        @if(!UserHelper::isSuperAdministrator())
+            <flux:navlist.group heading="Aide" class="grid">
+                <flux:navlist.item icon="at-symbol" href="/support" target="_blank">
+                    {{ __('Contacter le support') }}
+                </flux:navlist.item>
+            </flux:navlist.group>
+        @endif
         @if(UserHelper::isSuperAdministrator())
             <flux:navlist.group heading="Administration" class="grid">
-                <flux:navlist.item icon="shield-check" href="/superadmin" target="_blank" class="text-red">
+                <flux:navlist.item icon="shield-check" href="/superadmin" target="_blank">
                     {{ __('Back Office') }}
                 </flux:navlist.item>
             </flux:navlist.group>
