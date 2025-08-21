@@ -25,7 +25,7 @@
                 type="password"
                 name="password"
                 autocomplete="current-password"
-                placeholder="Password"
+                placeholder="Votre mot de passe"
                 required="true"
             />
 
