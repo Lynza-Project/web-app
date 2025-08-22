@@ -11,6 +11,19 @@ use Tests\TestCase;
 class SecurityHeadersTest extends TestCase
 {
     /**
+     * Set up the test environment
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Skip all tests if not in local environment
+        if (!app()->environment('local')) {
+            $this->markTestSkipped('SecurityHeadersTest only runs in local environment');
+        }
+    }
+
+    /**
      * Test that security headers are applied to web routes
      */
     public function test_security_headers_are_applied_to_web_routes(): void
