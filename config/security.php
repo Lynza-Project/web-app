@@ -29,8 +29,8 @@ return [
             'strict_transport_security' => true,
         ],
         'production' => [
-            'csp_report_only' => false,
-            'strict_transport_security' => true,
+            'csp_report_only' => true,
+            'strict_transport_security' => false,
         ],
     ],
 
